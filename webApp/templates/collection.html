@@ -9,34 +9,61 @@
         <form>
             <!-- Для всех -->
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="forall-radio" value="forall" checked>
-                <label class="form-check-label" for="forall-radio">
+                <input class="form-check-input" type="radio" name="radio-sex" id="radio-sex-for-all" value="forall" checked>
+                <label class="form-check-label" for="radio-sex-for-all">
                     For all
                 </label>
             </div>
 
             <!-- Женское -->
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="women-radio" value="women">
-                <label class="form-check-label" for="women-radio">
+                <input class="form-check-input" type="radio" name="radio-sex" id="radio-sex-women" value="women">
+                <label class="form-check-label" for="radio-sex-women">
                     Women
                 </label>
             </div>
 
             <!-- Мужское -->
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="men-radio" value="men">
-                <label class="form-check-label" for="men-radio">
+                <input class="form-check-input" type="radio" name="radio-sex" id="radio-sex-men" value="men">
+                <label class="form-check-label" for="radio-sex-men">
                     Men
                 </label>
             </div>
         </form>
 
     </div>
+
     <!-- Правый блок. Товары и фильтр -->
     <div class="m-1 p-1 d-flex flex-column" style="width: 85%">
-        <!-- Филтры сверху -->
-        <div class="p-1">Фитры</div>
+        <!-- Фильтры сверху -->
+        <form>
+            <div class="d-flex flex-row justify-content-start align-items-center p-1">
+                
+                <!-- Сортировка -->
+                <div class="btn-group mr-2" style="width: 180px;">
+                    <button id="sorting-button" class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Сортировать по
+                    </button>
+                    <div class="dropdown-menu">
+                        <a onclick="myFunction('По популярности')"    class="dropdown-item" active href="#">По популярности</a>
+                        <a onclick="myFunction('Цена возрастание')"   class="dropdown-item" href="#">Цена возрастание</a>
+                        <a onclick="myFunction('Цена убывание')"      class="dropdown-item" href="#">Цена убывание</a>
+                        <a onclick="myFunction('Размер возрастание')" class="dropdown-item" href="#">Размер возрастание</a>
+                        <a onclick="myFunction('Размер убывание')"    class="dropdown-item" href="#">Размер убывание</a>
+                    </div>
+                </div>
+                
+                
+                <div>
+                    Фильтр 2
+                </div>
+                
+                <div>
+                    Фильтр 3
+                </div>
+            </div>
+        </form>
         <!-- Каталог товаров или сообщение, что их нет -->
         <div class="flex-grow-1 p-1 mt-1">
             Товары
