@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+from markupsafe import escape
 
 app = Flask(__name__)
 
@@ -27,6 +28,11 @@ def cart():
 @app.route('/login/')
 def login():
     return render_template('login.html')
+
+# Item
+@app.route('/item/<vendor>')
+def item(vendor):
+    return escape(vendor)
 
 
 if __name__ == '__main__':
