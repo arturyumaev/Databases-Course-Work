@@ -3,12 +3,44 @@
 
 <div class="container-fluid d-flex flex-row" style="height: 400px;">
     <!-- Левый блок. Выбор категории -->
-    <div style="width: 18%; min-width: 120px;">
-        левый блок
+    <div class="m-1 p-1" style="width: 15%; min-width: 120px;">
+        
+        <!-- Форма выбора пола -->
+        <form>
+            <!-- Для всех -->
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="forall-radio" value="forall" checked>
+                <label class="form-check-label" for="forall-radio">
+                    For all
+                </label>
+            </div>
+
+            <!-- Женское -->
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="women-radio" value="women">
+                <label class="form-check-label" for="women-radio">
+                    Women
+                </label>
+            </div>
+
+            <!-- Мужское -->
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="men-radio" value="men">
+                <label class="form-check-label" for="men-radio">
+                    Men
+                </label>
+            </div>
+        </form>
+
     </div>
     <!-- Правый блок. Товары и фильтр -->
-    <div style="width: 82%">
-        правый блок
+    <div class="m-1 p-1 d-flex flex-column" style="width: 85%">
+        <!-- Филтры сверху -->
+        <div class="p-1">Фитры</div>
+        <!-- Каталог товаров или сообщение, что их нет -->
+        <div class="flex-grow-1 p-1 mt-1">
+            Товары
+        </div>
     </div>
 </div>
 
