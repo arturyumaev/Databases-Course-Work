@@ -1,10 +1,8 @@
 function myFunction(sort_on) {
-    console.log(sort_on);
     document.querySelector("#sorting-button").textContent=sort_on;
 }
 
 var options = [];
-
 $( '.dropdown-menu-category a' ).on( 'click', function( event ) {
 
    var $target = $( event.currentTarget ),
@@ -22,6 +20,28 @@ $( '.dropdown-menu-category a' ).on( 'click', function( event ) {
 
    $( event.target ).blur();
       
-   console.log( options );
+   // console.log( options );
    return false;
 });
+
+function send_filter_results () {
+    // Sorting type
+    var soring_type = document.querySelector('#sorting-button').innerText;
+    
+    // Categories options
+    var clothing_types = options;
+
+    // Get gender type
+    var gender = '';
+
+    for (var i = 0, length = 3; i < length; i++) {
+        if (document.querySelector('#gender-check-radio')[i].checked == true) {
+            gender = document.querySelector('#gender-check-radio')[i].value;
+        }
+    }
+
+    console.log('Results');
+    console.log(soring_type);
+    console.log(clothing_types);
+    console.log(gender);
+}

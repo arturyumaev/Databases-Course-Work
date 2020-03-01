@@ -6,7 +6,7 @@
     <div class="m-1 p-1 pt-4" style="width: 15%; min-width: 120px; border-right: 1px solid grey;">
         
         <!-- Форма выбора пола -->
-        <form>
+        <form id="gender-check-radio">
             <!-- Для всех -->
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="radio-sex" id="radio-sex-for-all" value="forall" checked>
@@ -43,7 +43,7 @@
             <!-- Сортировка -->
             <form>
                 <div class="btn-group mr-2" style="width: 180px;">
-                    <button id="sorting-button" class="btn btn-info btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button id="sorting-button" class="btn btn-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Сортировать по
                     </button>
                     <div class="dropdown-menu">
@@ -54,13 +54,13 @@
                 </div>
             </form>
             
-            
+            <!-- Категории одежды -->
             <div class="mr-1">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="button-group">
-                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+                                <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown">
                                     Категории
                                 </button>
                                 <ul class="dropdown-menu dropdown-menu-category">
@@ -80,6 +80,9 @@
             <div class="mr-1">
                 Фильтр 3
             </div>
+
+            <button onclick="send_filter_results()" type="button" class="btn btn-success btn-sm">Apply filters</button>
+
         </div>
         
         <!-- Каталог товаров или сообщение, что их нет -->
