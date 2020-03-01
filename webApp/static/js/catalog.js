@@ -26,7 +26,7 @@ $( '.dropdown-menu-category a' ).on( 'click', function( event ) {
 
 function send_filter_results () {
     // Sorting type
-    var soring_type = document.querySelector('#sorting-button').innerText;
+    var sorting_type = document.querySelector('#sorting-button').innerText;
     
     // Categories options
     var clothing_types = options;
@@ -40,8 +40,17 @@ function send_filter_results () {
         }
     }
 
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/filtering', true);
+    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+    xhr.send(JSON.stringify({
+        'sorting_type': sorting_type,
+        'clothing_types': clothing_types,
+        'gender': gender
+    }));
+
     console.log('Results');
-    console.log(soring_type);
+    console.log(sorting_type);
     console.log(clothing_types);
     console.log(gender);
 }

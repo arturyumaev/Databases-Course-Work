@@ -1,5 +1,4 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template, redirect, abort, request, url_for
 from markupsafe import escape
 
 app = Flask(__name__)
@@ -34,6 +33,14 @@ def login():
 def item(vendor):
     return render_template('item.html', vendor=vendor)
 
+@app.route('/filtering', methods=['POST'])
+def filtering():
+    if request.method == 'POST':
+        print(request.get_json())
+        
+        return redirect(url_for('collection'))
+    else:
+        return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
