@@ -43,11 +43,11 @@
             <!-- Сортировка -->
             <form>
                 <div class="btn-group mr-2" style="width: 180px;">
-                    <button id="sorting-button" class="btn btn-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Сортировать по</button>
+                    <button id="sorting-button" class="btn btn-light btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort by</button>
                     <div class="dropdown-menu">
-                        <a onclick="myFunction('По популярности')"  class="dropdown-item" active href="#">По популярности</a>
-                        <a onclick="myFunction('Цена возрастание')" class="dropdown-item" href="#">Цена возрастание</a>
-                        <a onclick="myFunction('Цена убывание')"    class="dropdown-item" href="#">Цена убывание</a>
+                        <a onclick="myFunction('By popularity')"  class="dropdown-item" active href="#">By popularity</a>
+                        <a onclick="myFunction('Ascending prices')" class="dropdown-item" href="#">Ascending prices</a>
+                        <a onclick="myFunction('Descending prices')"    class="dropdown-item" href="#">Descending prices</a>
                     </div>
                 </div>
             </form>
@@ -58,9 +58,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="button-group">
-                                <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown">
-                                    Категории
-                                </button>
+                                <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown">Categories</button>
                                 <ul class="dropdown-menu dropdown-menu-category">
                                     <li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 1</a></li>
                                     <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 2</a></li>
@@ -81,9 +79,8 @@
         
         <!-- Каталог товаров или сообщение, что их нет -->
         <div class="flex-grow-1 p-1 mt-1">
-            Товары
+            {% include "catalog.html" %}
         </div>
     </div>
 </div>
-
 {% endblock %}

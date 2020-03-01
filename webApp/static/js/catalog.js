@@ -34,23 +34,18 @@ function send_filter_results () {
     // Get gender type
     var gender = '';
 
+    // Проходимся по всем радио-баттонам и смотрим
+    // какой из них активный, если нашли - получаем его название
     for (var i = 0, length = 3; i < length; i++) {
         if (document.querySelector('#gender-check-radio')[i].checked == true) {
             gender = document.querySelector('#gender-check-radio')[i].value;
         }
     }
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", '/filtering', true);
-    xhr.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
-    xhr.send(JSON.stringify({
-        'sorting_type': sorting_type,
-        'clothing_types': clothing_types,
-        'gender': gender
-    }));
+    var queryString = '/collection?sort=' + sorting_type + '&gender=' + gender;
+    for (let i = 0; i < clothing_types.length; i++) {
+        queryString = queryString + '&cats=' + clothing_types[i];
+    }
 
-    console.log('Results');
-    console.log(sorting_type);
-    console.log(clothing_types);
-    console.log(gender);
+    window.location.replace(queryString);
 }
