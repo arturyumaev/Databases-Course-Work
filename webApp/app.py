@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, abort, request, url_for
 from markupsafe import escape
+import sqlite3
 
 app = Flask(__name__)
 
@@ -16,10 +17,6 @@ def collection():
         sort_by = request.args.get('sort')
         gender = request.args.get('gender')
         categories = request.args.getlist('cats')
-
-        print(sort_by)
-        print(gender)
-        print(categories)
 
         return render_template('collection.html', title='Collection', goods='Boogie')
     else:
