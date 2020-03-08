@@ -43,9 +43,14 @@ function send_filter_results () {
     }
 
     var queryString = '/collection?sort=' + sorting_type + '&gender=' + gender;
-    for (let i = 0; i < clothing_types.length; i++) {
-        queryString = queryString + '&cats=' + clothing_types[i];
+    if (clothing_types.length != 0) {
+        for (let i = 0; i < clothing_types.length; i++) {
+            queryString = queryString + '&cats=' + clothing_types[i];
+        }
+    } else {
+        queryString += '&cats=None'
     }
+    
 
     window.location.replace(queryString);
 }

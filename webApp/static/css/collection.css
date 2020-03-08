@@ -1,3 +1,9 @@
 #filters-border-bottom {
     border-bottom: 1px solid grey;
 }
+
+.item-style {
+    height: 300px;
+    width: 250px;
+    border: 1px solid red;
+}

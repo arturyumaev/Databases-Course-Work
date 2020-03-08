@@ -1,7 +1,7 @@
 {% extends "parent_template.html" %}
 {% block body %}
 
-<div class="container-fluid d-flex flex-row" style="height: 400px;">
+<div class="container-fluid d-flex flex-row h-100" style="height: 400px;">
     <!-- Левый блок. Выбор категории -->
     <div class="m-1 p-1 pt-4" style="width: 15%; min-width: 120px; border-right: 1px solid grey;">
         
@@ -17,17 +17,17 @@
 
             <!-- Женское -->
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radio-sex" id="radio-sex-women" value="women">
-                <label class="form-check-label" for="radio-sex-women">
-                    Women
+                <input class="form-check-input" type="radio" name="radio-sex" id="radio-sex-female" value="female">
+                <label class="form-check-label" for="radio-sex-female">
+                    Female
                 </label>
             </div>
 
             <!-- Мужское -->
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="radio-sex" id="radio-sex-men" value="men">
-                <label class="form-check-label" for="radio-sex-men">
-                    Men
+                <input class="form-check-input" type="radio" name="radio-sex" id="radio-sex-male" value="male">
+                <label class="form-check-label" for="radio-sex-male">
+                    Male
                 </label>
             </div>
         </form>
@@ -60,12 +60,11 @@
                             <div class="button-group">
                                 <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown">Categories</button>
                                 <ul class="dropdown-menu dropdown-menu-category">
-                                    <li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 1</a></li>
-                                    <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 2</a></li>
-                                    <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 3</a></li>
-                                    <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 4</a></li>
-                                    <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 5</a></li>
-                                    <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 6</a></li>
+                                    <li><a href="#" class="small" data-value="accessories" tabIndex="-1"><input type="checkbox"/>&nbsp;accessories</a></li>
+                                    <li><a href="#" class="small" data-value="outerwear" tabIndex="-1"><input type="checkbox"/>&nbsp;outerwear</a></li>
+                                    <li><a href="#" class="small" data-value="pants" tabIndex="-1"><input type="checkbox"/>&nbsp;pants</a></li>
+                                    <li><a href="#" class="small" data-value="shoes" tabIndex="-1"><input type="checkbox"/>&nbsp;shoes</a></li>
+                                    <li><a href="#" class="small" data-value="tshirts" tabIndex="-1"><input type="checkbox"/>&nbsp;tshirts</a></li>
                                 </ul>
                             </div>
                         </div>

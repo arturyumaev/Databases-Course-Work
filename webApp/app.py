@@ -1,6 +1,8 @@
 from flask import Flask, render_template, redirect, abort, request, url_for
 from markupsafe import escape
 import sqlite3
+from .db_manager import make_sql_query
+import numpy as np
 
 app = Flask(__name__)
 
@@ -12,15 +14,22 @@ def home():
 # Collection
 @app.route('/collection')
 def collection():
-    
-    if len(request.args) != 0:
+    url_args = list(request.args.keys())
+    if all(i in url_args for i in ['sort', 'gender', 'cats']):
         sort_by = request.args.get('sort')
         gender = request.args.get('gender')
         categories = request.args.getlist('cats')
 
-        return render_template('collection.html', title='Collection', goods='Boogie')
     else:
-        return render_template('collection.html', title='Collection')
+        sort_by = 'Sort by'
+        gender = 'forall'
+        categories = 'None'
+
+    data = make_sql_query(gender, sort_by, categories)
+
+    print()
+        
+    return render_template('collection.html', title='Collection', goods=np.array(data))
 
 # About us
 @app.route('/about_us')

@@ -1,5 +1,11 @@
 {% block body %}
-<div class="d-flex h-100 w-100 p-1">
-    {{ goods }}
+<div class="d-flex flex-wrap justify-content-start h-100 w-100 p-1">
+    {% for item in goods %}
+        
+        <div class="item-style m-3 ml-4">
+        {{ item }}
+        </div>
+
+    {% endfor %}
 </div>
 {% endblock %}
