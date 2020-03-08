@@ -1,9 +1,35 @@
 {% block body %}
-<div class="d-flex flex-wrap justify-content-start h-100 w-100 p-1">
+<div class="d-flex flex-wrap justify-content-center h-100 w-100 p-1">
     {% for item in goods %}
         
-        <div class="item-style m-3 ml-4">
-        {{ item }}
+        <div class="d-flex flex-column item-style m-3 ml-4">
+            <!-- Item image -->
+            <div class="d-flex justify-content-center align-items-center h-75">
+                <img class="item-img" src="/static/img/{{ item[2] }}" alt="Italian Trulli">
+            </div>
+            <!-- Item description -->
+            <div class="d-flex flex-column justify-content-center h-25 p-3">
+                <!-- Name -->
+                <div>
+                    <h6>{{ item[8] }}</h3>
+                </div>
+
+                <!-- Price -->
+                <div>
+                    Price: {{ item[4] }}
+                </div>
+                
+                <!-- Category -->
+                <div class="d-flex flex-row justify-content-between">
+                    {{ item[9] }}
+                    <button type="button" class="btn btn-outline-success btn-sm">To cart</button>
+                </div>
+
+                <!-- Add to cart -->
+                <div>
+                    
+                </div>
+            </div>
         </div>
 
     {% endfor %}

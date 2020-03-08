@@ -25,7 +25,7 @@ for i in range(1, 63):
     if i > 52 and i <= 62:
         cat = 'tshirts'
         price = random.randint(2000, 2500)
-    path = './database/img/catalog/men/' + cat + '/' + str(vendor) + '.jpg'
+    path = '/database/img/catalog/men/' + cat + '/' + str(vendor) + '.jpg'
     rating = random.randint(0, 100)
     s = '    ({}, \'{}\', \'{}\', {}, {}, , , , , \'{}\', ),\n'.format(vendor, 'male', path, rating, price, cat)
 

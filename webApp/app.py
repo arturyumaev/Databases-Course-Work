@@ -27,6 +27,9 @@ def collection():
 
     data = make_sql_query(gender, sort_by, categories)
 
+    for i in data:
+        print(i)
+
     print()
         
     return render_template('collection.html', title='Collection', goods=np.array(data))
