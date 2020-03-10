@@ -1,10 +1,11 @@
-from flask import Flask, render_template, redirect, abort, request, url_for
+from flask import Flask, render_template, redirect, abort, request, url_for, make_response, session
 from markupsafe import escape
 import sqlite3
 from .db_manager import make_sql_query
 import numpy as np
 
 app = Flask(__name__)
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 # Home
 @app.route('/')
