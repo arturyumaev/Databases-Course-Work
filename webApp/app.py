@@ -38,7 +38,9 @@ def about_us():
 # Cart
 @app.route('/cart')
 def cart():
-    return render_template('cart.html', title='Cart')
+    resp = cookies.validate_cookies(request=request,
+                                    resp_obj=render_template('cart.html', title='Cart'))
+    return resp
 
 
 # Login
