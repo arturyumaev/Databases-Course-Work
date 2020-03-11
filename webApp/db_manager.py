@@ -1,5 +1,22 @@
 import sqlite3
 
+
+def get_data(request):
+    url_args = list(request.args.keys())
+    if all(i in url_args for i in ['sort', 'gender', 'cats']):
+        sort_by = request.args.get('sort')
+        gender = request.args.get('gender')
+        categories = request.args.getlist('cats')
+    else:
+        sort_by = 'Sort by'
+        gender = 'forall'
+        categories = 'None'
+
+    data = make_sql_query(gender, sort_by, categories)
+
+    return data
+
+
 def make_sql_query(gender, sort_by, cats):
 
     # Create database for catalog of clothing
