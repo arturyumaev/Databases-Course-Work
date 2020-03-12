@@ -12,8 +12,24 @@ def insert_into_cart(userid, vendor, size):
 
     c.execute(sql_query)
     conn.commit()
+
+    goods_amount = c.execute("select count(userid) from cart where userid = '{}';".format(userid))
+    goods_amount = [i for i in goods_amount][0][0]
+
     conn.close()
 
+    return goods_amount
+
+
+def get_items_amount(userid):
+    conn = sqlite3.connect('./database/catalog.db')
+    c = conn.cursor()
+    goods_amount = c.execute("select count(userid) from cart where userid = '{}';".format(userid))
+    goods_amount = [i for i in goods_amount][0][0]
+
+    conn.close()
+
+    return goods_amount
 
 
 def get_data(request):

@@ -75,7 +75,8 @@ function add_to_cart(element) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             // do something with response
-            console.log(xhr.responseText);
+
+            document.querySelector('#cart-items-amount').innerText = xhr.responseText;
         }
    };
    xhr.send(data);
