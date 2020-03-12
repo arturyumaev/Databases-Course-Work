@@ -58,5 +58,13 @@ def item(vendor):
                                     resp_obj=render_template('item.html', vendor=vendor))
     return resp
 
+
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    print('New request from')
+    print(request.cookies)
+    print(request.form)
+    return 'Ok'
+
 if __name__ == '__main__':
     app.run(debug=True)

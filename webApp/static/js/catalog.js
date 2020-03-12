@@ -54,3 +54,26 @@ function send_filter_results () {
 
     window.location.replace(queryString);
 }
+
+function add_to_cart(element) {
+    var vendor = element.id.slice(12);
+    
+    var e = document.getElementById("size-" + vendor);
+    var selectedSize = e.options[e.selectedIndex].value;
+    
+    console.log(vendor);
+    console.log(selectedSize);
+
+    var xhr = new XMLHttpRequest();
+    var url = "/add_to_cart";
+    var data = "vendor=" + vendor + "&size=" + selectedSize;
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // do something with response
+            console.log(xhr.responseText);
+        }
+   };
+   xhr.send(data);
+};
