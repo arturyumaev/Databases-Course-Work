@@ -1,6 +1,21 @@
 import sqlite3
 
 
+def insert_into_cart(userid, vendor, size):
+    conn = sqlite3.connect('./database/catalog.db')
+    c = conn.cursor()
+
+    sql_query = 'insert into cart (userid, vendor, size) values '
+    sql_query += '(\'{}\',{},{});'.format(userid, vendor, size)
+
+    print(sql_query)
+
+    c.execute(sql_query)
+    conn.commit()
+    conn.close()
+
+
+
 def get_data(request):
     url_args = list(request.args.keys())
     if all(i in url_args for i in ['sort', 'gender', 'cats']):

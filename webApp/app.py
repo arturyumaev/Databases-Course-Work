@@ -61,10 +61,16 @@ def item(vendor):
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    print('New request from')
-    print(request.cookies)
+    userid = request.cookies.get('userid')
+    vendor = request.form.get('vendor')
+    size = request.form.get('size')
+
+    print('\nNew request from', userid)
     print(request.form)
-    return 'Ok'
+    db_manager.insert_into_cart(userid, vendor, size)
+    print()
+
+    return 'Ok' # select from database
 
 if __name__ == '__main__':
     app.run(debug=True)

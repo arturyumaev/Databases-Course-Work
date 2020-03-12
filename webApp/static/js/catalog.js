@@ -60,7 +60,10 @@ function add_to_cart(element) {
     
     var e = document.getElementById("size-" + vendor);
     var selectedSize = e.options[e.selectedIndex].value;
-    
+    if (selectedSize == 'Size') {
+        selectedSize = '44';
+    };
+
     console.log(vendor);
     console.log(selectedSize);
 
