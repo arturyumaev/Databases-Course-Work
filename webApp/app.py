@@ -16,7 +16,7 @@ def home():
     if not cookies.has_cookies(request):
         print("No cookies")
         resp = make_response(render_template('home.html', title='Home', items_amount=0))
-        resp.set_cookie('userid', get_userid())
+        resp.set_cookie('userid', cookies.get_userid())
         print("New cookies set, amount of items = 0")
     else:
         userid = request.cookies.get('userid')
@@ -34,7 +34,7 @@ def collection():
     if not cookies.has_cookies(request):
         print("No cookies")
         resp = make_response(render_template('collection.html', title='Collection', goods=np.array(data), items_amount=0))
-        resp.set_cookie('userid', get_userid())
+        resp.set_cookie('userid', cookies.get_userid())
         print("New cookies set, amount of items = 0")
     else:
         userid = request.cookies.get('userid')
@@ -50,7 +50,7 @@ def about_us():
     if not cookies.has_cookies(request):
         print("No cookies")
         resp = make_response(render_template('about_us.html', title='About us', items_amount=0))
-        resp.set_cookie('userid', get_userid())
+        resp.set_cookie('userid', cookies.get_userid())
         print("New cookies set, amount of items = 0")
     else:
         userid = request.cookies.get('userid')
@@ -66,7 +66,7 @@ def cart():
     if not cookies.has_cookies(request):
         print("No cookies")
         resp = make_response(render_template('cart.html', title='Cart', items_amount=0))
-        resp.set_cookie('userid', get_userid())
+        resp.set_cookie('userid', cookies.get_userid())
         print("New cookies set, amount of items = 0")
     else:
         userid = request.cookies.get('userid')
@@ -82,7 +82,7 @@ def login():
     if not cookies.has_cookies(request):
         print("No cookies")
         resp = make_response(render_template('login.html', title='Log in', items_amount=0))
-        resp.set_cookie('userid', get_userid())
+        resp.set_cookie('userid', cookies.get_userid())
         print("New cookies set, amount of items = 0")
     else:
         userid = request.cookies.get('userid')
@@ -98,7 +98,7 @@ def item(vendor):
     if not cookies.has_cookies(request):
         print("No cookies")
         resp = make_response(render_template('item.html', vendor=vendor, items_amount=0))
-        resp.set_cookie('userid', get_userid())
+        resp.set_cookie('userid', cookies.get_userid())
         print("New cookies set, amount of items = 0")
     else:
         userid = request.cookies.get('userid')
