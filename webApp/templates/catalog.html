@@ -8,15 +8,25 @@
                 <img class="item-img" src="/static/img/{{ item[2] }}" alt="Italian Trulli">
             </div>
             <!-- Item description -->
-            <div class="d-flex flex-column justify-content-center h-25 p-3">
+            <div class="d-flex flex-column justify-content-center h-25 p-2">
                 <!-- Name -->
                 <div>
-                    <h6>{{ item[8] }}</h3>
+                    <h6>
+                        {{ item[8] }}
+
+                        {% if item[7] == "1" %}
+                            <span class="badge badge-warning">New</span>
+                        {% endif %}
+                    </h6>
                 </div>
 
                 <!-- Price -->
                 <div>
-                    Price: {{ item[4] }}
+                    {% if item[6] == "1" %}
+                        Price: <s>{{ "%.2f"|format(item[4]|float) }}</s> {{ "%.2f"|format(item[4]|int * (1 - item[5]|float)|float) }} ₽
+                    {% else %}
+                        Price: {{ "%.2f"|format(item[4]|float) }} ₽
+                    {% endif %}
                 </div>
                 
                 <!-- Category -->
