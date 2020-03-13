@@ -65,13 +65,16 @@ def about_us():
 def cart():
     if not cookies.has_cookies(request):
         print("No cookies")
-        resp = make_response(render_template('cart.html', title='Cart', items_amount=0))
+        resp = make_response(render_template('cart.html', title='Cart', items_amount=0, cart=None))
         resp.set_cookie('userid', cookies.get_userid())
         print("New cookies set, amount of items = 0")
     else:
         userid = request.cookies.get('userid')
+        
         items_amount = db_manager.get_items_amount(userid)
-        resp = make_response(render_template('cart.html', title='Cart', items_amount=items_amount))
+        cart = db_manager.select_cart(userid)
+        
+        resp = make_response(render_template('cart.html', title='Cart', items_amount=items_amount, cart=cart))
 
     return resp
 
@@ -120,6 +123,7 @@ def add_to_cart():
     print()
 
     return str(goods_amount)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

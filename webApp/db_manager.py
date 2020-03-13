@@ -78,3 +78,31 @@ def make_sql_query(gender, sort_by, cats):
     conn.close()
 
     return data
+
+
+def select_cart(userid):
+    sql_query = """
+    select *, count(*) as amount from (
+        select g.description,
+            g.category,
+            g.gender,
+            c.size,
+            g.color,
+            g.price * (1 - g.discount) as price,
+            c.vendor
+        from cart c
+        join goods g
+        on c.vendor = g.vendor
+        where userid = '{0}'
+    ) as items
+    group by vendor, size
+    having count(*) >= 1
+    """.format(userid)
+
+    conn = sqlite3.connect('./database/catalog.db')
+    c = conn.cursor()
+    data = [i for i in c.execute(sql_query)]
+    conn.close()
+
+    return data
+    
