@@ -73,8 +73,10 @@ def cart():
         
         items_amount = db_manager.get_items_amount(userid)
         cart = db_manager.select_cart(userid)
+
+        total_price = sum([item[5] if cart else 0 for item in cart]) # Get total check price
         
-        resp = make_response(render_template('cart.html', title='Cart', items_amount=items_amount, cart=cart))
+        resp = make_response(render_template('cart.html', title='Cart', items_amount=items_amount, cart=cart, total_price=total_price))
 
     return resp
 
