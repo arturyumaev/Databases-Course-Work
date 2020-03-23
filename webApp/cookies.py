@@ -10,7 +10,7 @@ def has_cookies(request):
 def get_userid():
     N = 10
     # Verify that there are no that cookie in database
-    return ''.join(random.choices(string.ascii_lowercase + string.ascii_uppercase + string.digits, k=N))
+    return ''.join([random.choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(N)])
 
 
 def validate_cookies(request, template, **kwargs):
