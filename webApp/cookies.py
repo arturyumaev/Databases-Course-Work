@@ -16,5 +16,4 @@ def get_userid():
 def validate_cookies(request, template, **kwargs):
     # resp = make_response(render_template())
 
-
     return resp
