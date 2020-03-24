@@ -1,8 +1,11 @@
 import sqlite3
 
+DEV_MODE = 1
+DB_PATH = './database/catalog.db' if DEV_MODE else '/var/www/webApp/webApp/database/catalog.db'
+
 
 def insert_into_cart(userid, vendor, size):
-    conn = sqlite3.connect('./database/catalog.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
 
     sql_query = 'insert into cart (userid, vendor, size) values '
@@ -22,7 +25,7 @@ def insert_into_cart(userid, vendor, size):
 
 
 def get_items_amount(userid):
-    conn = sqlite3.connect('./database/catalog.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     goods_amount = c.execute("select count(userid) from cart where userid = '{}';".format(userid))
     goods_amount = [i for i in goods_amount][0][0]
@@ -51,7 +54,7 @@ def get_data(request):
 def make_sql_query(gender, sort_by, cats):
 
     # Create database for catalog of clothing
-    conn = sqlite3.connect('./database/catalog.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     
     sql_query = 'select * from goods'
@@ -99,7 +102,7 @@ def select_cart(userid):
     having count(*) >= 1
     """.format(userid)
 
-    conn = sqlite3.connect('./database/catalog.db')
+    conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
     data = [i for i in c.execute(sql_query)]
     conn.close()
