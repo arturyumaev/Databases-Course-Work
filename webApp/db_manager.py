@@ -1,8 +1,57 @@
 import sqlite3
+from abc import ABC, abstractmethod
 
-with open("db.conf", "r") as database_config:
+
+class StorageInterface(ABC):
+    @abstractmethod
+    def create(self):
+        pass
+
+
+    @abstractmethod
+    def read(self):
+        pass
+
+
+    @abstractmethod
+    def update(self, userid, vendor, size):
+        pass
+
+
+    @abstractmethod
+    def delete(self, userid):
+        pass
+
+
+class SQLiteStorage(StorageInterface):
+    def __init__(self):
+        self.__connection__ = Connection().getInstance()
+
+    
+
+class Connection:
+    def __init__(self):
+        self.__instance__ = None
+        self.config_name = "./db.conf"
+        self.DB_PATH = self.readConfig()
+    
+    def readConfig(self):
+        with open(self.config_name, "r") as database_config:
+            config = database_config.readline()
+
+        return config
+
+    def getInstance(self):
+        try:
+            self.__instance__ = sqlite3.connect(self.DB_PATH)
+            
+            return self.__instance__
+        except IOError:
+            print('An error occurred trying to connect to database.')
+
+
+with open("./db.conf", "r") as database_config:
     DB_PATH = database_config.readline()
-
 
 def insert_into_cart(userid, vendor, size):
     conn = sqlite3.connect(DB_PATH)
