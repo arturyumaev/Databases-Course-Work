@@ -1,7 +1,7 @@
 import sqlite3
 
-DEV_MODE = 1
-DB_PATH = './database/catalog.db' if DEV_MODE else '/var/www/webApp/webApp/database/catalog.db'
+with open("db.conf", "r") as database_config:
+    DB_PATH = database_config.readline()
 
 
 def insert_into_cart(userid, vendor, size):
