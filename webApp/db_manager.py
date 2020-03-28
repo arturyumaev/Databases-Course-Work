@@ -1,53 +1,123 @@
 import sqlite3
-from abc import ABC, abstractmethod
+from StorageInterface import StorageInterface
 
 
-class StorageInterface(ABC):
-    @abstractmethod
-    def create(self):
-        pass
-
-
-    @abstractmethod
-    def read(self):
-        pass
-
-
-    @abstractmethod
-    def update(self, userid, vendor, size):
-        pass
-
-
-    @abstractmethod
-    def delete(self, userid):
-        pass
-
-
-class SQLiteStorage(StorageInterface):
+class DatabaseStorage(StorageInterface):
     def __init__(self):
-        self.__connection__ = Connection().getInstance()
-
+        self.connection = Connection(sqlite3).getInstance()
     
+    def create(self, query):
+        c = self.connection.cursor()
+        c.execute(query)
+        self.connection.commit()
 
+    def read(self, query):
+        c = self.connection.cursor()
+        data = [row for row in c.execute(query)]
+        self.connection.commit()
+
+        return data
+
+    def update(self):
+        pass
+
+    def delete(self):
+        pass    
+
+
+
+# Cart table
+class GenerateSQLiteQueriesCart():
+    def __init__(self):
+        pass
+
+    def generateInsertIntoCart(self, userid, vendor, size):
+        sqlQuery = """
+        insert into cart (userid, vendor, size) values
+        (\'{}\',{},{});
+        """.format(userid, vendor, size)
+
+        return sqlQuery
+
+    def generateGetCartItemsAmount(self, userid):
+        sqlQuery = """
+        select count(userid) from cart where userid = '{}';
+        """.format(userid)
+
+        return sqlQuery
+
+    def generateGetCart(self, userid):
+        sqlQuery = """
+        select *, count(*) as amount from (
+            select g.description,
+                g.category,
+                g.gender,
+                c.size,
+                g.color,
+                g.price * (1 - g.discount) as price,
+                c.vendor
+            from cart c
+            join goods g
+            on c.vendor = g.vendor
+            where userid = '{0}'
+        ) as items
+        group by vendor, size
+        having count(*) >= 1
+        """.format(userid)
+
+        return sqlQuery
+
+# Goods table
+class GenerateSQLiteQueriesGoods():
+    def __init__(self):
+        pass
+
+    def generateGetGoods(self, gender, sort_by, cats):
+        sqlQuery = 'select * from goods'
+        if gender != 'forall':
+            sqlQuery += ' where gender = \'{}\''.format(gender)
+
+        if cats != 'None' and cats != ['None']:
+            if gender == 'forall':
+                sqlQuery += (' where (' + " or ".join(['category = \'{}\''.format(cat) for cat in cats]) + ')')
+            else:
+                sqlQuery += (' and (' + " or ".join(['category = \'{}\''.format(cat) for cat in cats]) + ')')
+
+        sqlQuery += ' order by '
+        if sort_by == 'By popularity' or sort_by == 'Sort by':
+            sqlQuery += 'rating desc'
+        if sort_by == 'Ascending prices':
+            sqlQuery += 'price'
+        if sort_by == 'Descending prices':
+            sqlQuery += 'price desc'
+
+        return sqlQuery
+
+# Connection
 class Connection:
-    def __init__(self):
-        self.__instance__ = None
-        self.config_name = "./db.conf"
-        self.DB_PATH = self.readConfig()
+    def __init__(self, server):
+        self.server = server
+        self.instance = None
+        self.configuration = None
     
-    def readConfig(self):
-        with open(self.config_name, "r") as database_config:
-            config = database_config.readline()
-
-        return config
-
     def getInstance(self):
-        try:
-            self.__instance__ = sqlite3.connect(self.DB_PATH)
+        if self.server.__name__ == "sqlite3":
+
+            with open("./db.conf", "r") as sqliteConfig:
+                self.configuration = sqliteConfig.readline()
             
-            return self.__instance__
-        except IOError:
-            print('An error occurred trying to connect to database.')
+            try:
+                self.instance = self.server.connect(self.configuration)
+
+                return self.instance
+            except IOError:
+                print('An error occurred trying to connect to sqlite3')
+        else:
+            # Handling of other database servers may be added
+            return None
+
+
+
 
 
 with open("./db.conf", "r") as database_config:
@@ -72,7 +142,6 @@ def insert_into_cart(userid, vendor, size):
 
     return goods_amount
 
-
 def get_items_amount(userid):
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
@@ -82,7 +151,6 @@ def get_items_amount(userid):
     conn.close()
 
     return goods_amount
-
 
 def get_data(request):
     url_args = list(request.args.keys())
@@ -98,7 +166,6 @@ def get_data(request):
     data = make_sql_query(gender, sort_by, categories)
 
     return data
-
 
 def make_sql_query(gender, sort_by, cats):
 
@@ -131,7 +198,6 @@ def make_sql_query(gender, sort_by, cats):
 
     return data
 
-
 def select_cart(userid):
     sql_query = """
     select *, count(*) as amount from (
@@ -157,4 +223,3 @@ def select_cart(userid):
     conn.close()
 
     return data
-    
