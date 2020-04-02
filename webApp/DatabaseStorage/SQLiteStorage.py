@@ -1,28 +1,31 @@
 import sqlite3
-from StorageInterface import StorageInterface
-from Connection import Connection
+from .StorageInterface import StorageInterface
+from .Connection import Connection
 
 
 class SQLiteStorage(StorageInterface):
-    def __init__(self):
+    def connect(self):
         self.connection = Connection(sqlite3).getInstance()
     
     def create(self, query):
+        self.connect()
         c = self.connection.cursor()
         c.execute(query)
         self.connection.commit()
+        self.connection.close()
 
     def read(self, query):
+        self.connect()
         c = self.connection.cursor()
         data = [row for row in c.execute(query)]
         self.connection.commit()
+        self.connection.close()
 
         return data
 
     def insertIntoCart(self, userid, vendor, size):
         insertQuery = GenerateSQLiteQueriesCart().generateInsertIntoCart(userid, vendor, size)
         self.create(insertQuery)
-        self.getItemsAmount(userid)
 
     def getItemsAmount(self, userid):
         selectQuery = GenerateSQLiteQueriesCart().generateGetCartItemsAmount(userid)
@@ -31,13 +34,17 @@ class SQLiteStorage(StorageInterface):
 
         return goodsAmount
         
-    def getData(self, gender, sortby, cats):
+    def getData(self, gender, sort_by, cats):
         selectQuery = GenerateSQLiteQueriesGoods().generateGetGoods(gender, sort_by, cats)
-        self.read(selectQuery)
+        data = self.read(selectQuery)
+
+        return data
 
     def selectCart(self, userid):
         selectQuery = GenerateSQLiteQueriesCart().generateGetCart(userid)
-        self.read(selectQuery)
+        data = self.read(selectQuery)
+
+        return data
 
     def update(self):
         pass

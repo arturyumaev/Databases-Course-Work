@@ -5,23 +5,27 @@ from . import db_manager
 from . import cookies
 import numpy as np
 
+from .DatabaseStorage import SQLiteStorage
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
+db = SQLiteStorage.SQLiteStorage()
 
 # Home
 @app.route('/')
 def home():
     if not cookies.has_cookies(request):
-        print("No cookies")
         resp = make_response(render_template('home.html', title='Home', items_amount=0))
         resp.set_cookie('userid', cookies.get_userid())
-        print("New cookies set, amount of items = 0")
     else:
-        userid = request.cookies.get('userid')
-        items_amount = db_manager.get_items_amount(userid)
-        resp = make_response(render_template('home.html', title='Home', items_amount=items_amount))
+        resp = make_response(
+            render_template(
+                'home.html',
+                title='Home',
+                items_amount=db.getItemsAmount(request.cookies.get('userid'))
+            )
+        )
 
     return resp
 
@@ -29,33 +33,35 @@ def home():
 # Collection
 @app.route('/collection')
 def collection():
-    data = db_manager.get_data(request)
+    url_args = list(request.args.keys())
+    sort_by = 'Sort by'
+    gender = 'forall'
+    categories = 'None'
+    if all(i in url_args for i in ['sort', 'gender', 'cats']):
+        sort_by = request.args.get('sort')
+        gender = request.args.get('gender')
+        categories = request.args.getlist('cats')
+
+    data = db.getData(gender, sort_by, categories)
 
     if not cookies.has_cookies(request):
-        print("No cookies")
-        resp = make_response(render_template('collection.html', title='Collection', goods=np.array(data), items_amount=0))
+        resp = make_response(
+            render_template(
+                'collection.html',
+                title='Collection',
+                goods=np.array(data),
+                items_amount=0)
+        )
         resp.set_cookie('userid', cookies.get_userid())
-        print("New cookies set, amount of items = 0")
     else:
-        userid = request.cookies.get('userid')
-        items_amount = db_manager.get_items_amount(userid)
-        resp = make_response(render_template('collection.html', title='Collection', goods=np.array(data), items_amount=items_amount))
-
-    return resp
-
-
-# About us
-@app.route('/about_us')
-def about_us():
-    if not cookies.has_cookies(request):
-        print("No cookies")
-        resp = make_response(render_template('about_us.html', title='About us', items_amount=0))
-        resp.set_cookie('userid', cookies.get_userid())
-        print("New cookies set, amount of items = 0")
-    else:
-        userid = request.cookies.get('userid')
-        items_amount = db_manager.get_items_amount(userid)
-        resp = make_response(render_template('about_us.html', title='About us', items_amount=items_amount))
+        resp = make_response(
+            render_template(
+                'collection.html',
+                title='Collection',
+                goods=np.array(data),
+                items_amount=db.getItemsAmount(request.cookies.get('userid'))
+            )
+        )
 
     return resp
 
@@ -64,35 +70,21 @@ def about_us():
 @app.route('/cart')
 def cart():
     if not cookies.has_cookies(request):
-        print("No cookies")
         resp = make_response(render_template('cart.html', title='Cart', items_amount=0, cart=None))
         resp.set_cookie('userid', cookies.get_userid())
-        print("New cookies set, amount of items = 0")
     else:
         userid = request.cookies.get('userid')
-        
-        items_amount = db_manager.get_items_amount(userid)
-        cart = db_manager.select_cart(userid)
-
+        cart = db.selectCart(userid)
         total_price = sum([item[5] if cart else 0 for item in cart]) # Get total check price
-        
-        resp = make_response(render_template('cart.html', title='Cart', items_amount=items_amount, cart=cart, total_price=total_price))
-
-    return resp
-
-
-# Login
-@app.route('/login')
-def login():
-    if not cookies.has_cookies(request):
-        print("No cookies")
-        resp = make_response(render_template('login.html', title='Log in', items_amount=0))
-        resp.set_cookie('userid', cookies.get_userid())
-        print("New cookies set, amount of items = 0")
-    else:
-        userid = request.cookies.get('userid')
-        items_amount = db_manager.get_items_amount(userid)
-        resp = make_response(render_template('login.html', title='Log in', items_amount=items_amount))
+        resp = make_response(
+            render_template(
+                'cart.html',
+                title='Cart',
+                items_amount=db.getItemsAmount(userid),
+                cart=cart,
+                total_price=total_price
+            )
+        )
 
     return resp
 
@@ -101,14 +93,16 @@ def login():
 @app.route('/item/<vendor>')
 def item(vendor):    
     if not cookies.has_cookies(request):
-        print("No cookies")
         resp = make_response(render_template('item.html', vendor=vendor, items_amount=0))
         resp.set_cookie('userid', cookies.get_userid())
-        print("New cookies set, amount of items = 0")
     else:
-        userid = request.cookies.get('userid')
-        items_amount = db_manager.get_items_amount(userid)
-        resp = make_response(render_template('item.html', vendor=vendor, items_amount=items_amount))
+        resp = make_response(
+            render_template(
+                'item.html',
+                vendor=vendor,
+                items_amount=db.getItemsAmount(request.cookies.get('userid'))
+            )
+        )
 
     return resp
 
@@ -119,10 +113,8 @@ def add_to_cart():
     vendor = request.form.get('vendor')
     size = request.form.get('size')
 
-    print('\nNew request from', userid)
-    print(request.form)
-    goods_amount = db_manager.insert_into_cart(userid, vendor, size)
-    print()
+    db.insertIntoCart(userid, vendor, size)
+    goods_amount = db.getItemsAmount(userid)
 
     return str(goods_amount)
 
