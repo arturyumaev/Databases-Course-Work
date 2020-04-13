@@ -1,11 +1,12 @@
-import sqlite3
 from .StorageInterface import StorageInterface
-from .Connection import Connection
+from .SQLiteQuery.generateSQLiteQueriesCart import GenerateSQLiteQueriesCart
+from .SQLiteQuery.generateSQLiteQueriesGoods import GenerateSQLiteQueriesGoods
+from ..Connection import Connection
 
 
 class SQLiteStorage(StorageInterface):
     def connect(self):
-        self.connection = Connection(sqlite3).getInstance()
+        self.connection = Connection().getInstance()
     
     def create(self, query):
         self.connect()
@@ -51,68 +52,3 @@ class SQLiteStorage(StorageInterface):
 
     def delete(self):
         pass
-
-class GenerateSQLiteQueriesCart():
-    def __init__(self):
-        pass
-
-    def generateInsertIntoCart(self, userid, vendor, size):
-        sqlQuery = """
-        insert into cart (userid, vendor, size) values
-        (\'{}\',{},{});
-        """.format(userid, vendor, size)
-
-        return sqlQuery
-
-    def generateGetCartItemsAmount(self, userid):
-        sqlQuery = """
-        select count(userid) from cart where userid = '{}';
-        """.format(userid)
-
-        return sqlQuery
-
-    def generateGetCart(self, userid):
-        sqlQuery = """
-        select *, count(*) as amount from (
-            select g.description,
-                g.category,
-                g.gender,
-                c.size,
-                g.color,
-                g.price * (1 - g.discount) as price,
-                c.vendor
-            from cart c
-            join goods g
-            on c.vendor = g.vendor
-            where userid = '{0}'
-        ) as items
-        group by vendor, size
-        having count(*) >= 1
-        """.format(userid)
-
-        return sqlQuery
-
-class GenerateSQLiteQueriesGoods():
-    def __init__(self):
-        pass
-
-    def generateGetGoods(self, gender, sort_by, cats):
-        sqlQuery = 'select * from goods'
-        if gender != 'forall':
-            sqlQuery += ' where gender = \'{}\''.format(gender)
-
-        if cats != 'None' and cats != ['None']:
-            if gender == 'forall':
-                sqlQuery += (' where (' + " or ".join(['category = \'{}\''.format(cat) for cat in cats]) + ')')
-            else:
-                sqlQuery += (' and (' + " or ".join(['category = \'{}\''.format(cat) for cat in cats]) + ')')
-
-        sqlQuery += ' order by '
-        if sort_by == 'By popularity' or sort_by == 'Sort by':
-            sqlQuery += 'rating desc'
-        if sort_by == 'Ascending prices':
-            sqlQuery += 'price'
-        if sort_by == 'Descending prices':
-            sqlQuery += 'price desc'
-
-        return sqlQuery

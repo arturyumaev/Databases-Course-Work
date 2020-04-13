@@ -2,9 +2,12 @@
 
 # $1 - deploy mode
 
+rm config.ini
+
 if [ $1 = "production" ]; then
         # Create database configuration file
-        echo "/var/www/webApp/webApp/database/catalog.db" > db.conf
+        echo DATABASE=sqlite3> config.ini
+        echo PATH=/var/www/webApp/webApp/database/catalog.db>> config.ini
         
         # Apache needs full rights on reading and writing
         sudo chmod -R 777 /var/www/webApp/
@@ -21,5 +24,6 @@ if [ $1 = "production" ]; then
         sudo service apache2 restart
 
 elif [ $1 = "development" ]; then
-        echo "./database/catalog.db" > db.conf
+        echo DATABASE=sqlite3> config.ini
+        echo PATH=./database/catalog.db>> config.ini
 fi

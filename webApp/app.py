@@ -1,10 +1,8 @@
+import numpy as np
+import sqlite3
+from . import cookies
 from flask import Flask, render_template, redirect, abort, request, url_for, make_response, session
 from markupsafe import escape
-import sqlite3
-from . import db_manager
-from . import cookies
-import numpy as np
-
 from .DatabaseStorage import SQLiteStorage
 
 app = Flask(__name__)
@@ -16,7 +14,8 @@ db = SQLiteStorage.SQLiteStorage()
 @app.route('/')
 def home():
     if not cookies.has_cookies(request):
-        resp = make_response(render_template('home.html', title='Home', items_amount=0))
+        resp = make_response(render_template(
+            'home.html', title='Home', items_amount=0))
         resp.set_cookie('userid', cookies.get_userid())
     else:
         resp = make_response(
@@ -70,12 +69,14 @@ def collection():
 @app.route('/cart')
 def cart():
     if not cookies.has_cookies(request):
-        resp = make_response(render_template('cart.html', title='Cart', items_amount=0, cart=None))
+        resp = make_response(render_template(
+            'cart.html', title='Cart', items_amount=0, cart=None))
         resp.set_cookie('userid', cookies.get_userid())
     else:
         userid = request.cookies.get('userid')
         cart = db.selectCart(userid)
-        total_price = sum([item[5] if cart else 0 for item in cart]) # Get total check price
+        # Get total check price
+        total_price = sum([item[5] if cart else 0 for item in cart])
         resp = make_response(
             render_template(
                 'cart.html',
@@ -91,9 +92,10 @@ def cart():
 
 # Item
 @app.route('/item/<vendor>')
-def item(vendor):    
+def item(vendor):
     if not cookies.has_cookies(request):
-        resp = make_response(render_template('item.html', vendor=vendor, items_amount=0))
+        resp = make_response(render_template(
+            'item.html', vendor=vendor, items_amount=0))
         resp.set_cookie('userid', cookies.get_userid())
     else:
         resp = make_response(
