@@ -23,14 +23,10 @@ then
   sudo service apache2 restart
 elif [ "$1" = "dev" ]
 then
-  export FLASK_ENV=development
-  export FLASK_APP=app.py
-  export FLASK_DEBUG=1
-
   echo DATABASE=sqlite3> config.ini
   echo PATH=./database/catalog.db>> config.ini
 
-  flask run
+  python3 app.py
 else
   echo "No keywords found!"
   echo "Use ./start [prod|dev]"      

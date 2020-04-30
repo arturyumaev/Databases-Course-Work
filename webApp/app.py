@@ -1,14 +1,16 @@
 import numpy as np
 import sqlite3
-from . import cookies
+import cookies
 from flask import Flask, render_template, redirect, abort, request, url_for, make_response, session
 from markupsafe import escape
-from .DatabaseStorage import SQLiteStorage
+
+from DatabaseStorage.SQLiteStorage import SQLiteStorage
+
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
-db = SQLiteStorage.SQLiteStorage()
+db = SQLiteStorage()
 
 # Home
 @app.route('/')

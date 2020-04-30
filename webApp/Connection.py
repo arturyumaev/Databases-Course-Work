@@ -1,4 +1,4 @@
-from .ConfigManager import ConfigManager
+from ConfigManager import ConfigManager
 
 
 class Connection():

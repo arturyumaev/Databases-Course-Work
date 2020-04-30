@@ -1,8 +1,10 @@
-from .StorageInterface import StorageInterface
-from .SQLiteQuery.generateSQLiteQueriesCart import GenerateSQLiteQueriesCart
-from .SQLiteQuery.generateSQLiteQueriesGoods import GenerateSQLiteQueriesGoods
-from ..Connection import Connection
+import sys
+sys.path.insert(0,'..')
 
+from DatabaseStorage.StorageInterface import StorageInterface
+from DatabaseStorage.SQLiteQuery.generateSQLiteQueriesCart import GenerateSQLiteQueriesCart
+from DatabaseStorage.SQLiteQuery.generateSQLiteQueriesGoods import GenerateSQLiteQueriesGoods
+from Connection import Connection
 
 class SQLiteStorage(StorageInterface):
     def connect(self):
