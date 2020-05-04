@@ -10,23 +10,33 @@
                     <th scope="col">Size</th>
                     <th scope="col">Total price</th>
                     <th scope="col">Quantity</th>
+                    <th scope="col">Delete item</th>
                 </tr>
             </thead>
             
             <tbody>
+            {% set counter = namespace(value=1) %}
             {% for vendor in cart %}
-                <tr>
-                    <!-- Row index -->
-                    <th scope="row">{{ loop.index }}</th>
-                    
-                    <!-- Values -->
-                    {% for size in cart[vendor]['sizes'] %}
+                {% for size in cart[vendor]['sizes'] %}
+                    <tr>
+                        <th scope="row">{{ counter.value }}</th>
                         <td>{{ vendor }}</td>
                         <td>{{ size }}</td>
                         <td>0</td>
-                        <td>{{ cart[vendor]['sizes'][size] }}</td>
-                    {% endfor %}
-                </tr>
+                        <!-- Quantity manage -->
+                        <td>
+                            <!-- Decrement quantity button -->
+                            <button type="button" class="btn mr-1 btn-outline-secondary btn-circle btn-sm">-</button>
+                            {{ cart[vendor]['sizes'][size] }}
+                            <!-- Increment quantity button -->
+                            <button type="button" class="btn ml-1 btn-outline-secondary btn-circle btn-sm">+</button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger btn-sm">Delete item</button>
+                        </td>
+                    </tr>
+                    {% set counter.value = counter.value + 1 %}
+                {% endfor %}
             {% endfor %}
             </tbody>
 
