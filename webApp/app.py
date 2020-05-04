@@ -5,26 +5,34 @@ from flask import Flask, render_template, redirect, abort, request, url_for, mak
 from markupsafe import escape
 
 from DatabaseStorage.SQLiteStorage import SQLiteStorage
-
+from BusinessRules.CartController  import CartController
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 db = SQLiteStorage()
+cartController = CartController()
+cartSessionStorage = {}
 
 # Home
 @app.route('/')
 def home():
-    if not cookies.has_cookies(request):
-        resp = make_response(render_template(
-            'home.html', title='Home', items_amount=0))
-        resp.set_cookie('userid', cookies.get_userid())
+    if not cookies.hasCookies(request):
+        userSessionId = cookies.getUserSessionId()
+        cartSessionStorage[userSessionId] = cartController.generateCart(userSessionId)
+
+        resp = make_response(render_template('home.html', title='Home', items_amount=0))
+        resp.set_cookie('userid', userSessionId)
     else:
+        userSessionId = request.cookies.get('userid')
+        cart = cartSessionStorage[userSessionId]
+        cartItemsQuantity = cart.itemsQuantity
+
         resp = make_response(
             render_template(
                 'home.html',
                 title='Home',
-                items_amount=db.getItemsAmount(request.cookies.get('userid'))
+                items_amount=cartItemsQuantity
             )
         )
 
@@ -35,9 +43,7 @@ def home():
 @app.route('/collection')
 def collection():
     url_args = list(request.args.keys())
-    sort_by = 'Sort by'
-    gender = 'forall'
-    categories = 'None'
+    sort_by, gender, categories = 'Sort by', 'forall', 'None'
     if all(i in url_args for i in ['sort', 'gender', 'cats']):
         sort_by = request.args.get('sort')
         gender = request.args.get('gender')
@@ -45,7 +51,10 @@ def collection():
 
     data = db.getData(gender, sort_by, categories)
 
-    if not cookies.has_cookies(request):
+    if not cookies.hasCookies(request):
+        userSessionId = cookies.getUserSessionId()
+        cartSessionStorage[userSessionId] = cartController.generateCart(userSessionId)
+
         resp = make_response(
             render_template(
                 'collection.html',
@@ -53,14 +62,18 @@ def collection():
                 goods=np.array(data),
                 items_amount=0)
         )
-        resp.set_cookie('userid', cookies.get_userid())
+        resp.set_cookie('userid', userSessionId)
     else:
+        userSessionId = request.cookies.get('userid')
+        cart = cartSessionStorage[userSessionId]
+        cartItemsQuantity = cart.itemsQuantity
+
         resp = make_response(
             render_template(
                 'collection.html',
                 title='Collection',
                 goods=np.array(data),
-                items_amount=db.getItemsAmount(request.cookies.get('userid'))
+                items_amount=cartItemsQuantity
             )
         )
 
@@ -70,41 +83,25 @@ def collection():
 # Cart
 @app.route('/cart')
 def cart():
-    if not cookies.has_cookies(request):
+    if not cookies.hasCookies(request):
+        userSessionId = cookies.getUserSessionId()
+        cartSessionStorage[userSessionId] = cartController.generateCart(userSessionId)
+
         resp = make_response(render_template(
             'cart.html', title='Cart', items_amount=0, cart=None))
-        resp.set_cookie('userid', cookies.get_userid())
+        resp.set_cookie('userid', userSessionId)
     else:
-        userid = request.cookies.get('userid')
-        cart = db.selectCart(userid)
-        # Get total check price
-        total_price = sum([item[5] if cart else 0 for item in cart])
+        userSessionId = request.cookies.get('userid')
+        cart = cartSessionStorage[userSessionId]
+        cartItemsQuantity = cart.itemsQuantity
+
         resp = make_response(
             render_template(
                 'cart.html',
                 title='Cart',
-                items_amount=db.getItemsAmount(userid),
-                cart=cart,
-                total_price=total_price
-            )
-        )
-
-    return resp
-
-
-# Item
-@app.route('/item/<vendor>')
-def item(vendor):
-    if not cookies.has_cookies(request):
-        resp = make_response(render_template(
-            'item.html', vendor=vendor, items_amount=0))
-        resp.set_cookie('userid', cookies.get_userid())
-    else:
-        resp = make_response(
-            render_template(
-                'item.html',
-                vendor=vendor,
-                items_amount=db.getItemsAmount(request.cookies.get('userid'))
+                items_amount=cart.itemsQuantity,
+                cart=[],
+                total_price=cart.totalOrderPrice
             )
         )
 
@@ -113,14 +110,17 @@ def item(vendor):
 
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    userid = request.cookies.get('userid')
+    userSessionId = request.cookies.get('userid')
+    cart = cartSessionStorage[userSessionId]
+    
     vendor = request.form.get('vendor')
     size = request.form.get('size')
+    price = 50
 
-    db.insertIntoCart(userid, vendor, size)
-    goods_amount = db.getItemsAmount(userid)
+    cart.addItem(vendor, size, price)
+    cartItemsQuantity = cart.itemsQuantity
 
-    return str(goods_amount)
+    return str(cartItemsQuantity)
 
 
 if __name__ == '__main__':

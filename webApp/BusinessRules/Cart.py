@@ -1,3 +1,5 @@
+import random
+
 class Cart:
     def __init__(self, userId):
         self.statusCodes = [
@@ -5,8 +7,12 @@ class Cart:
             "Waiting for checkout",
             "Paid"
         ]
+        self.cartId = "-".join(
+            ["".join([str(n) for n in random.sample(range(10), 4)])
+            for _ in range(4)]
+        )
         self.userId = userId
-        self.itemsAmount = 0
+        self.itemsQuantity = 0
         self.items = {}
         self.status = self.statusCodes[0]
         self.totalOrderPrice = 0
@@ -24,7 +30,8 @@ class Cart:
                     size: 1
                 }
             }
-        self.itemsAmount += 1
+        self.totalOrderPrice += price
+        self.itemsQuantity += 1
         self.status = self.statusCodes[1]
 
     def removeItem(self):
@@ -34,7 +41,7 @@ class Cart:
         if vendor in self.items and size in self.items[vendor]["sizes"]:
             updateMode = 1 if method == "inc" else -1
             self.items[vendor]["sizes"][size] += updateMode
-            self.itemsAmount += updateMode
+            self.itemsQuantity += updateMode
             self.totalOrderPrice += updateMode * self.items[vendor]["price"]
 
     def confirmOrderAndSendRequest(self):
