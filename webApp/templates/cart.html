@@ -6,28 +6,26 @@
             <thead class="thead">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Gender</th>
-                    <th scope="col">Size</th>
-                    <th scope="col">Color</th>
-                    <th scope="col">Total price</th>
                     <th scope="col">Vendor</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col"></th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Total price</th>
+                    <th scope="col">Quantity</th>
                 </tr>
             </thead>
             
             <tbody>
-            {% for item in cart %}
+            {% for vendor in cart %}
                 <tr>
+                    <!-- Row index -->
                     <th scope="row">{{ loop.index }}</th>
-                    {% for value in item %}
-                        <td>{{ value }}</td>
+                    
+                    <!-- Values -->
+                    {% for size in cart[vendor]['sizes'] %}
+                        <td>{{ vendor }}</td>
+                        <td>{{ size }}</td>
+                        <td>0</td>
+                        <td>{{ cart[vendor]['sizes'][size] }}</td>
                     {% endfor %}
-                        <td>
-                            <button type="button" class="btn btn-danger btn-sm">Delete item</button>
-                        </td>
                 </tr>
             {% endfor %}
             </tbody>

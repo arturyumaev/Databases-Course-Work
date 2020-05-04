@@ -87,8 +87,7 @@ def cart():
         userSessionId = cookies.getUserSessionId()
         cartSessionStorage[userSessionId] = cartController.generateCart(userSessionId)
 
-        resp = make_response(render_template(
-            'cart.html', title='Cart', items_amount=0, cart=None))
+        resp = make_response(render_template('cart.html', title='Cart', items_amount=0, cart=None))
         resp.set_cookie('userid', userSessionId)
     else:
         userSessionId = request.cookies.get('userid')
@@ -100,7 +99,7 @@ def cart():
                 'cart.html',
                 title='Cart',
                 items_amount=cart.itemsQuantity,
-                cart=[],
+                cart=cart.items,
                 total_price=cart.totalOrderPrice
             )
         )
@@ -119,6 +118,8 @@ def add_to_cart():
 
     cart.addItem(vendor, size, price)
     cartItemsQuantity = cart.itemsQuantity
+
+    print(cart.items)
 
     return str(cartItemsQuantity)
 
