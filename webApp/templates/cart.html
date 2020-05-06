@@ -22,7 +22,7 @@
                         <th scope="row">{{ counter.value }}</th>
                         <td>{{ vendor }}</td>
                         <td>{{ size }}</td>
-                        <td>0</td>
+                        <td>{{ cart[vendor]['price'] * cart[vendor]['sizes'][size] }}</td>
                         <!-- Quantity manage -->
                         <td>
                             <!-- Decrement quantity button -->

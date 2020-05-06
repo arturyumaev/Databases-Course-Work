@@ -2,9 +2,9 @@ import random
 import string
 from flask import make_response, render_template
 
+
 def hasCookies(request):
     return "userid" in list(request.cookies.keys())
-        
 
 def getUserSessionId():
     N = 10

@@ -1,6 +1,7 @@
 # $1 - deploy mode
 
 rm config.ini
+./redisTools.sh start # Start redis server
 
 if [ "$1" = "prod" ]
 then
@@ -31,3 +32,5 @@ else
   echo "No keywords found!"
   echo "Use ./start [prod|dev]"      
 fi
+
+./redisTools.sh stop

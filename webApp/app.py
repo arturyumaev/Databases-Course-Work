@@ -1,4 +1,5 @@
 import numpy as np
+import redis
 import sqlite3
 import cookies
 from flask import Flask, render_template, redirect, abort, request, url_for, make_response, session
@@ -14,19 +15,19 @@ db = SQLiteStorage()
 cartController = CartController()
 cartSessionStorage = {}
 
+
 # Home
 @app.route('/')
 def home():
     if not cookies.hasCookies(request):
         userSessionId = cookies.getUserSessionId()
-        cartSessionStorage[userSessionId] = cartController.generateCart(userSessionId)
+        cartController.generateCart(userSessionId)
 
         resp = make_response(render_template('home.html', title='Home', items_amount=0))
         resp.set_cookie('userid', userSessionId)
     else:
         userSessionId = request.cookies.get('userid')
-        cart = cartSessionStorage[userSessionId]
-        cartItemsQuantity = cart.itemsQuantity
+        cartItemsQuantity = cartController.getCart(userSessionId).itemsQuantity
 
         resp = make_response(
             render_template(
@@ -53,7 +54,7 @@ def collection():
 
     if not cookies.hasCookies(request):
         userSessionId = cookies.getUserSessionId()
-        cartSessionStorage[userSessionId] = cartController.generateCart(userSessionId)
+        cartController.generateCart(userSessionId)
 
         resp = make_response(
             render_template(
@@ -65,8 +66,7 @@ def collection():
         resp.set_cookie('userid', userSessionId)
     else:
         userSessionId = request.cookies.get('userid')
-        cart = cartSessionStorage[userSessionId]
-        cartItemsQuantity = cart.itemsQuantity
+        cartItemsQuantity = cartController.getCart(userSessionId).itemsQuantity
 
         resp = make_response(
             render_template(
@@ -85,14 +85,13 @@ def collection():
 def cart():
     if not cookies.hasCookies(request):
         userSessionId = cookies.getUserSessionId()
-        cartSessionStorage[userSessionId] = cartController.generateCart(userSessionId)
+        cartController.generateCart(userSessionId)
 
         resp = make_response(render_template('cart.html', title='Cart', items_amount=0, cart=None))
         resp.set_cookie('userid', userSessionId)
     else:
         userSessionId = request.cookies.get('userid')
-        cart = cartSessionStorage[userSessionId]
-        cartItemsQuantity = cart.itemsQuantity
+        cart = cartController.getCart(userSessionId)
 
         resp = make_response(
             render_template(
@@ -110,7 +109,7 @@ def cart():
 @app.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
     userSessionId = request.cookies.get('userid')
-    cart = cartSessionStorage[userSessionId]
+    cart = cartController.getCart(userSessionId)
     
     vendor = request.form.get('vendor')
     size = request.form.get('size')
@@ -119,7 +118,7 @@ def add_to_cart():
     cart.addItem(vendor, size, price)
     cartItemsQuantity = cart.itemsQuantity
 
-    print(cart.items)
+    cartController.updateCart(userSessionId, cart)
 
     return str(cartItemsQuantity)
 

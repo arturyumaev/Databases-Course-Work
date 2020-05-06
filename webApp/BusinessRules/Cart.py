@@ -47,6 +47,3 @@ class Cart:
     def confirmOrderAndSendRequest(self):
         # confirm ...
         self.status = self.statusCodes[2]
-
-    def getCart(self):
-        pass
