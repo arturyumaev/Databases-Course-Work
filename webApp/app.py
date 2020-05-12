@@ -113,8 +113,8 @@ def add_to_cart():
     
     vendor = request.form.get('vendor')
     size = request.form.get('size')
-    price = 50
-
+    price = db.getItemPrice(vendor)[0][0]
+    
     cart.addItem(vendor, size, price)
     cartItemsQuantity = cart.itemsQuantity
 
@@ -127,7 +127,7 @@ def add_to_cart():
 def remove_item_from_cart(vendor, size):
     userSessionId = request.cookies.get('userid')
     cart = cartController.getCart(userSessionId)
-    price = 50
+    price = db.getItemPrice(vendor)[0][0]
     cart.removeItem(vendor, size, price)
     cartController.updateCart(userSessionId, cart)
 

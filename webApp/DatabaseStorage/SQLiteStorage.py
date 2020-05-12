@@ -49,6 +49,12 @@ class SQLiteStorage(StorageInterface):
 
         return data
 
+    def getItemPrice(self, vendor):
+        selectQuery = GenerateSQLiteQueriesGoods().generateGetItemPrice(vendor)
+        data = self.read(selectQuery)
+
+        return data
+
     def update(self):
         pass
 

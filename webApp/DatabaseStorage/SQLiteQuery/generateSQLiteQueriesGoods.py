@@ -22,3 +22,10 @@ class GenerateSQLiteQueriesGoods():
             sqlQuery += 'price desc'
 
         return sqlQuery
+
+    def generateGetItemPrice(self, vendor):
+        sqlQuery = """
+        select price - (discount_bool * price * discount) from goods where vendor = {};
+        """.format(vendor)
+
+        return sqlQuery
