@@ -34,8 +34,10 @@ class Cart:
         self.itemsQuantity += 1
         self.status = self.statusCodes[1]
 
-    def removeItem(self):
-        pass
+    def removeItem(self, vendor, size, price):
+        self.itemsQuantity -= self.items[vendor]["sizes"][size]
+        self.totalOrderPrice -= self.items[vendor]["sizes"][size] * price
+        del self.items[vendor]["sizes"][size]
 
     def updateItemAmount(self, vendor, size, method):
         if vendor in self.items and size in self.items[vendor]["sizes"]:

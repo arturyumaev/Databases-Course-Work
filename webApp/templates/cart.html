@@ -32,7 +32,9 @@
                             <button type="button" class="btn ml-1 btn-outline-secondary btn-circle btn-sm">+</button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-outline-danger btn-sm">Delete item</button>
+                            <form action="/remove_item_from_cart/{{ vendor }}/{{ size }}" method="post">
+                                <button type="submit" formmethod="post" type="button" class="btn btn-outline-danger btn-sm">Delete item</button>
+                            </form>
                         </td>
                     </tr>
                     {% set counter.value = counter.value + 1 %}

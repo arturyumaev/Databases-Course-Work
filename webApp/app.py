@@ -123,5 +123,15 @@ def add_to_cart():
     return str(cartItemsQuantity)
 
 
+@app.route('/remove_item_from_cart/<vendor>/<size>', methods=['POST', 'GET'])
+def remove_item_from_cart(vendor, size):
+    userSessionId = request.cookies.get('userid')
+    cart = cartController.getCart(userSessionId)
+    price = 50
+    cart.removeItem(vendor, size, price)
+    cartController.updateCart(userSessionId, cart)
+
+    return redirect(url_for('cart'))
+
 if __name__ == '__main__':
     app.run(debug=True)
