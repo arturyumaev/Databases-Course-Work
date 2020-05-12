@@ -46,6 +46,8 @@ class Cart:
             self.itemsQuantity += updateMode
             self.totalOrderPrice += updateMode * self.items[vendor]["price"]
 
+        return self.items[vendor]["sizes"][size], self.itemsQuantity, self.totalOrderPrice
+
     def confirmOrderAndSendRequest(self):
         # confirm ...
         self.status = self.statusCodes[2]

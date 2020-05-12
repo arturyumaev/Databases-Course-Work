@@ -114,7 +114,7 @@ def add_to_cart():
     vendor = request.form.get('vendor')
     size = request.form.get('size')
     price = db.getItemPrice(vendor)[0][0]
-    
+
     cart.addItem(vendor, size, price)
     cartItemsQuantity = cart.itemsQuantity
 
@@ -132,6 +132,17 @@ def remove_item_from_cart(vendor, size):
     cartController.updateCart(userSessionId, cart)
 
     return redirect(url_for('cart'))
+
+
+@app.route('/update_item_amount/<vendor>/<size>/<method>', methods=['POST', 'GET'])
+def update_item_amount(vendor, size, method):
+    userSessionId = request.cookies.get('userid')
+    cart = cartController.getCart(userSessionId)
+    remainingItemAmount, itemsQuantity, totalOrderPrice = cart.updateItemAmount(vendor, size, method)
+    cartController.updateCart(userSessionId, cart)
+
+    return ",".join([str(remainingItemAmount), str(itemsQuantity), str(totalOrderPrice)])
+
 
 if __name__ == '__main__':
     app.run(debug=True)

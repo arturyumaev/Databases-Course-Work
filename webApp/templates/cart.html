@@ -8,7 +8,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Vendor</th>
                     <th scope="col">Size</th>
-                    <th scope="col">Total price</th>
+                    <th scope="col">Price per unit</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Delete item</th>
                 </tr>
@@ -22,14 +22,55 @@
                         <th scope="row">{{ counter.value }}</th>
                         <td>{{ vendor }}</td>
                         <td>{{ size }}</td>
-                        <td>{{ cart[vendor]['price'] * cart[vendor]['sizes'][size] }}</td>
+                        <td>{{ cart[vendor]['price'] }}</td>
                         <!-- Quantity manage -->
-                        <td>
+                        <td class="d-flex flex-row">
+                            
                             <!-- Decrement quantity button -->
-                            <button type="button" class="btn mr-1 btn-outline-secondary btn-circle btn-sm">-</button>
-                            {{ cart[vendor]['sizes'][size] }}
+                            <button onclick="updateItemAmount({{ vendor }}, {{ size }}, 'dec')" type="button" class="btn mr-1 btn-outline-secondary btn-circle btn-sm">-</button>
+                            
+                            <div id="item-{{ vendor }}-{{ size }}">
+                                {{ cart[vendor]['sizes'][size] }}
+                            </div>
+                            
                             <!-- Increment quantity button -->
-                            <button type="button" class="btn ml-1 btn-outline-secondary btn-circle btn-sm">+</button>
+                            <button onclick="updateItemAmount({{ vendor }}, {{ size }}, 'inc')" type="button" class="btn ml-1 btn-outline-secondary btn-circle btn-sm">+</button>
+                            
+                            <script>
+                                function updateItemAmount(vendor, size, method) {
+                                    var itemAmount = Number(document.querySelector(`#item-${vendor}-${size}`).innerText);
+                                    if (method == "dec" && itemAmount <= 1) {
+                                        console.log("Wrong action");
+                                    } else {
+                                        var xmlhttp = new XMLHttpRequest();
+                                        var url = `/update_item_amount/${vendor}/${size}/${method}`;
+                                        
+                                        xmlhttp.onreadystatechange = function() {
+                                            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+                                                if (xmlhttp.status == 200) {
+                                                    var response = xmlhttp.responseText.split(",");
+                                                    var itemAmount = response[0];
+                                                    var itemsQuantity = response[1];
+                                                    var totalOrderPrice = response[2];
+                                                    document.querySelector(`#item-${vendor}-${size}`).innerText = itemAmount;
+                                                    document.querySelector("#cart-items-amount").innerText = itemsQuantity;
+                                                    document.querySelector("#total-order-price").innerText = Number(totalOrderPrice).toFixed(2);
+                                                }
+                                                else if (xmlhttp.status == 400) {
+                                                    alert('There was an error 400');
+                                                }
+                                                else {
+                                                    alert('something else other than 200 was returned');
+                                                    console.log(xmlhttp.status);
+                                                }
+                                            }
+                                        };
+
+                                        xmlhttp.open("GET", url, true);
+                                        xmlhttp.send();
+                                    };
+                                };
+                            </script>
                         </td>
                         <td>
                             <form action="/remove_item_from_cart/{{ vendor }}/{{ size }}" method="post">
@@ -43,7 +84,12 @@
             </tbody>
 
         </table>
-        Total price: {{ total_price }}
+        <div class="d-flex flex-row">
+            Total price:
+            <div id="total-order-price">
+                {{ "%.2f"|format(total_price) }} ₽
+            </div>
+        </div>
     </div>
 
 {% endblock %}
