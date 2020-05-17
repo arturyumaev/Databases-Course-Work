@@ -7,6 +7,7 @@ from markupsafe import escape
 
 from DatabaseStorage.SQLiteStorage import SQLiteStorage
 from BusinessRules.CartController  import CartController
+from BusinessRules.WarehouseController import WarehouseController
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -14,6 +15,7 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 db = SQLiteStorage()
 cartController = CartController()
 cartSessionStorage = {}
+warehouse = WarehouseController().createWarehouseInstance()
 
 
 # Home
@@ -51,6 +53,7 @@ def collection():
         categories = request.args.getlist('cats')
 
     data = db.getData(gender, sort_by, categories)
+    itemsQuantity = warehouse.getItemsQuantity()
 
     if not cookies.hasCookies(request):
         userSessionId = cookies.getUserSessionId()
@@ -61,7 +64,8 @@ def collection():
                 'collection.html',
                 title='Collection',
                 goods=np.array(data),
-                items_amount=0)
+                items_amount=0,
+                itemsQuantity=itemsQuantity)
         )
         resp.set_cookie('userid', userSessionId)
     else:
@@ -73,8 +77,8 @@ def collection():
                 'collection.html',
                 title='Collection',
                 goods=np.array(data),
-                items_amount=cartItemsQuantity
-            )
+                items_amount=cartItemsQuantity,
+                itemsQuantity=itemsQuantity)
         )
 
     return resp
@@ -92,6 +96,7 @@ def cart():
     else:
         userSessionId = request.cookies.get('userid')
         cart = cartController.getCart(userSessionId)
+        itemsQuantity = warehouse.getItemsQuantity()
 
         resp = make_response(
             render_template(
@@ -99,7 +104,8 @@ def cart():
                 title='Cart',
                 items_amount=cart.itemsQuantity,
                 cart=cart.items,
-                total_price=cart.totalOrderPrice
+                total_price=cart.totalOrderPrice,
+                itemsQuantity=itemsQuantity
             )
         )
 

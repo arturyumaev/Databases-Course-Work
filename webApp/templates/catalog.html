@@ -40,11 +40,11 @@
                     <form class="form-inline">
                         <select class="custom-select my-1 mr-sm-2" id="size-{{ item[0] }}" required>
                             <option selected>Size</option>
-                            <option value="44">44</option>
-                            <option value="46">46</option>
-                            <option value="48">48</option>
-                            <option value="50">50</option>
-                            <option value="52">52</option>
+                                {% for size, quantity in itemsQuantity[item[0] | int].items() %}
+                                    <option value="{{ size }}">
+                                        {{ size }}: {{ quantity }}
+                                    </option>
+                                {% endfor %}
                         </select>
                       
                         <button onclick="add_to_cart(this);" id="add-to-cart-{{ item[0] }}" type="button" class="btn btn-outline-success btn-sm">To cart</button>

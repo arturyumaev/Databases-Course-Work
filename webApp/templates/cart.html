@@ -10,6 +10,7 @@
                     <th scope="col">Size</th>
                     <th scope="col">Price per unit</th>
                     <th scope="col">Quantity</th>
+                    <th scope="col">Available in stock</th>
                     <th scope="col">Delete item</th>
                 </tr>
             </thead>
@@ -23,7 +24,8 @@
                         <td>{{ vendor }}</td>
                         <td>{{ size }}</td>
                         <td>{{ cart[vendor]['price'] }}</td>
-                        <!-- Quantity manage -->
+                        
+                        <!-- Quantity -->
                         <td class="d-flex flex-row">
                             
                             <!-- Decrement quantity button -->
@@ -39,8 +41,11 @@
                             <script>
                                 function updateItemAmount(vendor, size, method) {
                                     var itemAmount = Number(document.querySelector(`#item-${vendor}-${size}`).innerText);
+                                    var maxItemAmountInStock = Number(document.querySelector(`#cart-${vendor}-${size}`).innerText);
                                     if (method == "dec" && itemAmount <= 1) {
-                                        console.log("Wrong action");
+                                        alert("At least one item must be added");
+                                    } else if (method == "inc" && itemAmount >= maxItemAmountInStock) {
+                                        alert("No more goods in stock!");
                                     } else {
                                         var xmlhttp = new XMLHttpRequest();
                                         var url = `/update_item_amount/${vendor}/${size}/${method}`;
@@ -72,6 +77,13 @@
                                 };
                             </script>
                         </td>
+                        
+                        <!-- Available in stock -->
+                        <td id="cart-{{ vendor }}-{{ size }}">
+                            {{ itemsQuantity[vendor|int][size|int] }}
+                        </td>
+                        
+                        <!-- Delete button -->
                         <td>
                             <form action="/remove_item_from_cart/{{ vendor }}/{{ size }}" method="post">
                                 <button type="submit" formmethod="post" type="button" class="btn btn-outline-danger btn-sm">Delete item</button>

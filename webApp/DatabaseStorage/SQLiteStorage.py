@@ -4,6 +4,7 @@ sys.path.insert(0,'..')
 from DatabaseStorage.StorageInterface import StorageInterface
 from DatabaseStorage.SQLiteQuery.generateSQLiteQueriesCart import GenerateSQLiteQueriesCart
 from DatabaseStorage.SQLiteQuery.generateSQLiteQueriesGoods import GenerateSQLiteQueriesGoods
+from DatabaseStorage.SQLiteQuery.generateSQLiteQueriesAvailability import GenerateSQLiteQueriesAvailability
 from Connection import Connection
 
 class SQLiteStorage(StorageInterface):
@@ -36,6 +37,20 @@ class SQLiteStorage(StorageInterface):
         goodsAmount = [_ for _ in data][0][0]
 
         return goodsAmount
+
+    def getItemsQuantity(self):
+        selectQuery = GenerateSQLiteQueriesAvailability().generateGetItemsQuantity()
+        data = self.read(selectQuery)
+        itemsQuantity = [item[1:] for item in data]
+
+        itemsAvailabilityDictionary = {}
+        for t in itemsQuantity:
+            if t[0] in itemsAvailabilityDictionary: # t[0] - vendor
+                itemsAvailabilityDictionary[t[0]][t[1]] = t[2]
+            else:
+                itemsAvailabilityDictionary[t[0]] = {t[1]: t[2]}
+
+        return itemsAvailabilityDictionary
         
     def getData(self, gender, sort_by, cats):
         selectQuery = GenerateSQLiteQueriesGoods().generateGetGoods(gender, sort_by, cats)
