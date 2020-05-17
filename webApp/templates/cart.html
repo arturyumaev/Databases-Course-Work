@@ -1,7 +1,8 @@
 {% extends "parent_template.html" %}
 {% block body %}
 
-    <div class="container-sm pt-3">
+    <div class="container-sm pt-3 d-flex flex-column align-items-end">
+        <!-- Таблица товаров в корзине -->
         <table class="table table-hover">
             <thead class="thead">
                 <tr>
@@ -96,12 +97,30 @@
             </tbody>
 
         </table>
-        <div class="d-flex flex-row">
-            Total price:
-            <div id="total-order-price">
+
+        <!-- Итоговая сумма чека -->
+        <div class="d-flex flex-row font-weight-bold" style="font-size:18px;">
+            Total order amount:
+            <div id="total-order-price" style="font-size:18px;" class="ml-1 font-weight-bold">
                 {{ "%.2f"|format(total_price) }} ₽
             </div>
         </div>
+
+        <!-- Форма отправки данных -->
+        <form class="mt-3 mb-3" style="width: 50%;">
+            <div class="form-group">
+                <label for="firstNameLastName">First name and last name</label>
+                <input type="text" class="form-control" id="firstNameLastName">
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Email address</label>
+                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="d-flex flex-row justify-content-end">
+                <button type="submit" class="btn btn-primary">Submit order</button>
+            </div>
+          </form>
     </div>
 
 {% endblock %}
