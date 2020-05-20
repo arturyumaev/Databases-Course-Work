@@ -58,4 +58,4 @@ class Cart:
             print("An error occured while updating item quantity in cart for user", self.userId)
     
     def clear(self):
-        pass
+        self.__init__(self.userId)

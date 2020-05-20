@@ -4,7 +4,6 @@ import sqlite3
 import cookies
 from flask import Flask, render_template, redirect, abort, request, url_for, make_response, session
 from markupsafe import escape
-from time import gmtime, strftime
 
 from DatabaseStorage.SQLiteStorage import SQLiteStorage
 from BusinessRules.CartController  import CartController
@@ -156,20 +155,28 @@ def update_item_amount(vendor, size, method):
 def accept_order():
     name = request.form.get('name')
     email = request.form.get('email')
-    orderNumber = OrdersManager.generateOrderNumber()
     userSessionId = request.cookies.get('userid')
+    
     cart = cartController.getCart(userSessionId)
-    cartId = cart.cartId
-    timeOrderCreated = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+    ordersManager.createNewOrder(name, email, cart)
 
-    # clear user cart
+    warehouse.removeOrderedItems(cart.items)
+
     cart.clear()
     cartController.updateCart(userSessionId, cart)
+    cartItemsQuantity = cartController.getCart(userSessionId).itemsQuantity
 
+    resp = make_response(
+        render_template(
+            'order_accepted.html',
+            title='Order accepted',
+            items_amount=cartItemsQuantity))
     
+    return resp
 
-    return redirect(url_for('cart'))
-
+@app.route('/test')
+def test():
+    return render_template('order_accepted.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

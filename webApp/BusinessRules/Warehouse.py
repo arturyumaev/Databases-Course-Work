@@ -12,12 +12,8 @@ class Warehouse:
 
         return data
 
-    def sendOrder(self, itemsDict):
-        pass
-
-    def _updateDatabase(self, itemsDict):
-        pass
-
-    def _deleteItemFromDatabase(self, vendor, quantity):
-        pass
-
+    def removeOrderedItems(self, items):
+        for vendor in items:
+            for size in items[vendor]['sizes']:
+                quantity = items[vendor]['sizes'][size]
+                self.databaseInstance.updateItemQuantity(vendor, size, quantity)

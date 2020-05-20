@@ -27,6 +27,13 @@ class SQLiteStorage(StorageInterface):
         self.connection.close()
 
         return data
+    
+    def update(self, query):
+        self.connect()
+        c = self.connection.cursor()
+        c.execute(query)
+        self.connection.commit()
+        self.connection.close()
 
     def insertIntoCart(self, userid, vendor, size):
         insertQuery = GenerateSQLiteQueriesCart().generateInsertIntoCart(userid, vendor, size)
@@ -71,8 +78,17 @@ class SQLiteStorage(StorageInterface):
 
         return data
 
-    def update(self):
-        pass
+    def insertItemIntoOrders(self, orderNumber, cartId, name, vendor, size, quantity, email, time):
+        insertQuery = GenerateSQLiteQueriesOrders().generateInsertIntoOrders(
+            orderNumber, cartId, name, vendor, size, quantity, email, time
+        )
+        self.create(insertQuery)
+
+    def updateItemQuantity(self, vendor, size, orderedQuantity):
+        updateQuery = GenerateSQLiteQueriesAvailability().generateUpdateItemQuantity(
+            vendor, size, orderedQuantity
+        )
+        self.update(updateQuery)
 
     def delete(self):
         pass

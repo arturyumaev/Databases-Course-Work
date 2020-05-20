@@ -6,3 +6,12 @@ class GenerateSQLiteQueriesAvailability():
         sqlQuery = "select * from availability;"
 
         return sqlQuery
+    
+    def generateUpdateItemQuantity(self, vendor, size, orderedQuantity):
+        sqlQuery = """
+        update availability
+        set number = number - {}
+        where vendor = {} and size = {};
+        """.format(orderedQuantity, vendor, size)
+
+        return sqlQuery

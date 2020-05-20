@@ -40,14 +40,24 @@
                     <form class="form-inline">
                         <select class="custom-select my-1 mr-sm-2" id="size-{{ item[0] }}" required>
                             <option selected>Size</option>
-                                {% for size, quantity in itemsQuantity[item[0] | int].items() %}
+                            {% for size, quantity in itemsQuantity[item[0] | int].items() %}
+                                {% if quantity > 0 %}
                                     <option value="{{ size }}">
                                         {{ size }}: {{ quantity }}
                                     </option>
-                                {% endfor %}
+                                {% endif %}
+                            {% endfor %}
                         </select>
                       
-                        <button onclick="add_to_cart(this);" id="add-to-cart-{{ item[0] }}" type="button" class="btn btn-outline-success btn-sm">To cart</button>
+                        {% set warehouseAmount = namespace(value=0) %}
+                        {% for size, quantity in itemsQuantity[item[0] | int].items() %}
+                            {% set warehouseAmount.value = warehouseAmount.value + quantity %}
+                        {% endfor %}
+                        {% if warehouseAmount.value > 0 %}
+                            <button onclick="add_to_cart(this);" id="add-to-cart-{{ item[0] }}" type="button" class="btn btn-outline-success btn-sm">To cart</button>
+                        {% else %}
+                            <button onclick="add_to_cart(this);" id="add-to-cart-{{ item[0] }}" type="button" class="btn btn-secondary btn-sm" disabled>Item is over</button>
+                        {% endif %}
                     </form>
                 </div>
             </div>
