@@ -5,6 +5,7 @@ from DatabaseStorage.StorageInterface import StorageInterface
 from DatabaseStorage.SQLiteQuery.generateSQLiteQueriesCart import GenerateSQLiteQueriesCart
 from DatabaseStorage.SQLiteQuery.generateSQLiteQueriesGoods import GenerateSQLiteQueriesGoods
 from DatabaseStorage.SQLiteQuery.generateSQLiteQueriesAvailability import GenerateSQLiteQueriesAvailability
+from DatabaseStorage.SQLiteQuery.generateSQLiteQueriesOrders import GenerateSQLiteQueriesOrders
 from Connection import Connection
 
 class SQLiteStorage(StorageInterface):
