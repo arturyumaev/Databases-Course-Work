@@ -4,10 +4,12 @@ import sqlite3
 import cookies
 from flask import Flask, render_template, redirect, abort, request, url_for, make_response, session
 from markupsafe import escape
+from time import gmtime, strftime
 
 from DatabaseStorage.SQLiteStorage import SQLiteStorage
 from BusinessRules.CartController  import CartController
 from BusinessRules.WarehouseController import WarehouseController
+from BusinessRules.OrdersManager import OrdersManager
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -16,7 +18,7 @@ db = SQLiteStorage()
 cartController = CartController()
 cartSessionStorage = {}
 warehouse = WarehouseController().createWarehouseInstance()
-
+ordersManager = OrdersManager()
 
 # Home
 @app.route('/')
@@ -148,6 +150,25 @@ def update_item_amount(vendor, size, method):
     cartController.updateCart(userSessionId, cart)
 
     return ",".join([str(remainingItemAmount), str(itemsQuantity), str(totalOrderPrice)])
+
+
+@app.route('/accept_order', methods=['POST'])
+def accept_order():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    orderNumber = OrdersManager.generateOrderNumber()
+    userSessionId = request.cookies.get('userid')
+    cart = cartController.getCart(userSessionId)
+    cartId = cart.cartId
+    timeOrderCreated = strftime("%Y-%m-%d %H:%M:%S", gmtime())
+
+    # clear user cart
+    cart.clear()
+    cartController.updateCart(userSessionId, cart)
+
+    
+
+    return redirect(url_for('cart'))
 
 
 if __name__ == '__main__':

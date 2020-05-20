@@ -56,3 +56,6 @@ class Cart:
             return self.items[vendor]["sizes"][size], self.itemsQuantity, self.totalOrderPrice
         except IOError:
             print("An error occured while updating item quantity in cart for user", self.userId)
+    
+    def clear(self):
+        pass
