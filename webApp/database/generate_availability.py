@@ -1,4 +1,5 @@
 import random
+import logging
 
 out = open("./avail_female.sql", 'w')
 

@@ -1,0 +1,281 @@
+2020-06-04 21:45:36,925 Application was started
+2020-06-04 21:46:44,696 Application was started
+2020-06-04 21:46:44,699 A new warehouse instance was created
+2020-06-04 21:46:44,860  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2020-06-04 21:46:44,863  * Restarting with stat
+2020-06-04 21:46:45,523 Application was started
+2020-06-04 21:46:45,528 A new warehouse instance was created
+2020-06-04 21:46:45,543  * Debugger is active!
+2020-06-04 21:46:45,584  * Debugger PIN: 468-817-599
+2020-06-04 21:47:03,964 New request to /home
+2020-06-04 21:47:04,072 127.0.0.1 - - [04/Jun/2020 21:47:04] "[37mGET / HTTP/1.1[0m" 200 -
+2020-06-04 21:47:04,399 127.0.0.1 - - [04/Jun/2020 21:47:04] "[36mGET /static/css/home.css HTTP/1.1[0m" 304 -
+2020-06-04 21:47:04,440 127.0.0.1 - - [04/Jun/2020 21:47:04] "[36mGET /static/css/collection.css HTTP/1.1[0m" 304 -
+2020-06-04 21:47:04,488 127.0.0.1 - - [04/Jun/2020 21:47:04] "[36mGET /static/js/catalog.js HTTP/1.1[0m" 304 -
+2020-06-04 21:47:07,574 127.0.0.1 - - [04/Jun/2020 21:47:07] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2020-06-04 21:47:10,892 127.0.0.1 - - [04/Jun/2020 21:47:10] "[35m[1mGET /collection HTTP/1.1[0m" 500 -
+2020-06-04 21:47:11,263 127.0.0.1 - - [04/Jun/2020 21:47:11] "[37mGET /collection?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+2020-06-04 21:47:11,266 127.0.0.1 - - [04/Jun/2020 21:47:11] "[37mGET /collection?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+2020-06-04 21:47:11,283 127.0.0.1 - - [04/Jun/2020 21:47:11] "[37mGET /collection?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+2020-06-04 21:47:12,407 127.0.0.1 - - [04/Jun/2020 21:47:12] "[37mGET /collection?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+2020-06-04 21:47:12,924 127.0.0.1 - - [04/Jun/2020 21:47:12] "[37mGET /collection?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+2020-06-04 21:47:53,314  * Detected change in '/home/artur/Desktop/Databases-Course-Work/webApp/app.py', reloading
+2020-06-04 21:47:53,673  * Restarting with stat
+2020-06-04 21:47:55,157 Application was started
+2020-06-04 21:47:55,165 A new warehouse instance was created
+2020-06-04 21:47:55,213  * Debugger is active!
+2020-06-04 21:47:55,223  * Debugger PIN: 468-817-599
+2020-06-04 21:47:59,287  * Detected change in '/home/artur/Desktop/Databases-Course-Work/webApp/app.py', reloading
+2020-06-04 21:47:59,489  * Restarting with stat
+2020-06-04 21:48:00,987 Application was started
+2020-06-04 21:48:00,996 A new warehouse instance was created
+2020-06-04 21:48:01,037  * Debugger is active!
+2020-06-04 21:48:01,047  * Debugger PIN: 468-817-599
+2020-06-04 21:48:10,142  * Detected change in '/home/artur/Desktop/Databases-Course-Work/webApp/app.py', reloading
+2020-06-04 21:48:10,377  * Restarting with stat
+2020-06-04 21:48:11,309 Application was started
+2020-06-04 21:48:11,323 A new warehouse instance was created
+2020-06-04 21:48:11,391  * Debugger is active!
+2020-06-04 21:48:11,393  * Debugger PIN: 468-817-599
+2020-06-04 21:48:26,190 New request to /collection
+2020-06-04 21:48:26,192 New 'read' databse interface request
+2020-06-04 21:48:26,192 Trying to establish connection
+2020-06-04 21:48:26,192 Connection closed
+2020-06-04 21:48:26,193 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:26,193 Database path: ./database/catalog.db
+2020-06-04 21:48:26,193 Trying to connect to database.
+2020-06-04 21:48:26,214 A connection to the database has been established
+2020-06-04 21:48:26,216 A connection has been established
+2020-06-04 21:48:26,218 New 'read' databse interface request
+2020-06-04 21:48:26,221 Trying to establish connection
+2020-06-04 21:48:26,222 Connection closed
+2020-06-04 21:48:26,222 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:26,222 Database path: ./database/catalog.db
+2020-06-04 21:48:26,224 Trying to connect to database.
+2020-06-04 21:48:26,225 A connection to the database has been established
+2020-06-04 21:48:26,225 A connection has been established
+2020-06-04 21:48:26,447 127.0.0.1 - - [04/Jun/2020 21:48:26] "[37mGET /collection HTTP/1.1[0m" 200 -
+2020-06-04 21:48:27,351 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/tshirts/0075.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,367 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/pants/0071.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,410 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/pants/0069.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,380 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/pants/0070.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,413 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/accessories/0064.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,418 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/shoes/0074.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,657 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/shoes/0073.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,680 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/tshirts/0076.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,669 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/outerwear/0068.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,744 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/outerwear/0066.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,748 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/outerwear/0067.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,805 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/shoes/0072.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,979 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/women/accessories/0065.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:27,988 127.0.0.1 - - [04/Jun/2020 21:48:27] "[36mGET /static/img/men/pants/0028.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,016 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/shoes/0047.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,058 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/tshirts/0053.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,061 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/accessories/0002.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,209 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/outerwear/0015.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,222 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/pants/0029.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,233 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/accessories/0009.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,254 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/accessories/0006.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,305 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/outerwear/0022.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,365 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/accessories/0005.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,603 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/pants/0027.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,636 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/outerwear/0020.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,611 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/outerwear/0017.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,649 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/outerwear/0026.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,688 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/pants/0038.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,703 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/pants/0036.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,706 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/pants/0040.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,740 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/tshirts/0061.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,785 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/pants/0031.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,799 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/shoes/0050.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,841 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/tshirts/0058.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,851 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/tshirts/0060.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,890 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/outerwear/0024.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,910 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/tshirts/0059.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,949 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/shoes/0045.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:28,976 127.0.0.1 - - [04/Jun/2020 21:48:28] "[36mGET /static/img/men/shoes/0048.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,069 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/tshirts/0062.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,074 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/pants/0035.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,092 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/outerwear/0021.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,096 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/shoes/0046.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,152 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/outerwear/0016.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,158 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/outerwear/0018.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,218 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/women/tshirts/0077.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,239 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/outerwear/0023.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,260 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/pants/0037.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,273 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/shoes/0051.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,341 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/outerwear/0013.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,361 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/accessories/0008.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,426 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/shoes/0044.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,459 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/pants/0042.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,480 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/pants/0030.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,495 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/tshirts/0054.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,544 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/outerwear/0011.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,553 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/accessories/0010.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,627 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/shoes/0052.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,645 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/tshirts/0057.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,677 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/accessories/0007.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,723 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/outerwear/0012.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,726 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/outerwear/0014.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,752 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/outerwear/0025.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,808 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/pants/0039.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,853 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/shoes/0043.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,885 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/accessories/0003.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,925 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/pants/0033.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,957 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/women/accessories/0063.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:29,954 127.0.0.1 - - [04/Jun/2020 21:48:29] "[36mGET /static/img/men/shoes/0049.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:30,043 127.0.0.1 - - [04/Jun/2020 21:48:30] "[36mGET /static/img/men/pants/0032.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:30,054 127.0.0.1 - - [04/Jun/2020 21:48:30] "[36mGET /static/img/men/outerwear/0019.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:30,094 127.0.0.1 - - [04/Jun/2020 21:48:30] "[36mGET /static/img/men/pants/0041.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:30,142 127.0.0.1 - - [04/Jun/2020 21:48:30] "[36mGET /static/img/men/tshirts/0056.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:30,178 127.0.0.1 - - [04/Jun/2020 21:48:30] "[36mGET /static/img/men/pants/0034.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:30,211 127.0.0.1 - - [04/Jun/2020 21:48:30] "[36mGET /static/img/men/tshirts/0055.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:30,213 127.0.0.1 - - [04/Jun/2020 21:48:30] "[36mGET /static/img/men/accessories/0004.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:30,251 127.0.0.1 - - [04/Jun/2020 21:48:30] "[36mGET /static/img/men/accessories/0001.jpg HTTP/1.1[0m" 304 -
+2020-06-04 21:48:33,248 New 'read' databse interface request
+2020-06-04 21:48:33,249 Trying to establish connection
+2020-06-04 21:48:33,250 Connection closed
+2020-06-04 21:48:33,250 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:33,250 Database path: ./database/catalog.db
+2020-06-04 21:48:33,251 Trying to connect to database.
+2020-06-04 21:48:33,252 A connection to the database has been established
+2020-06-04 21:48:33,252 A connection has been established
+2020-06-04 21:48:33,254 User zEMvphdba6 added a few items to cart
+2020-06-04 21:48:33,255 127.0.0.1 - - [04/Jun/2020 21:48:33] "[37mPOST /add_to_cart HTTP/1.1[0m" 200 -
+2020-06-04 21:48:35,660 New 'read' databse interface request
+2020-06-04 21:48:35,662 Trying to establish connection
+2020-06-04 21:48:35,664 Connection closed
+2020-06-04 21:48:35,665 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:35,665 Database path: ./database/catalog.db
+2020-06-04 21:48:35,665 Trying to connect to database.
+2020-06-04 21:48:35,667 A connection to the database has been established
+2020-06-04 21:48:35,667 A connection has been established
+2020-06-04 21:48:35,669 User zEMvphdba6 added a few items to cart
+2020-06-04 21:48:35,669 127.0.0.1 - - [04/Jun/2020 21:48:35] "[37mPOST /add_to_cart HTTP/1.1[0m" 200 -
+2020-06-04 21:48:36,519 New 'read' databse interface request
+2020-06-04 21:48:36,520 Trying to establish connection
+2020-06-04 21:48:36,521 Connection closed
+2020-06-04 21:48:36,523 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:36,523 Database path: ./database/catalog.db
+2020-06-04 21:48:36,523 Trying to connect to database.
+2020-06-04 21:48:36,523 A connection to the database has been established
+2020-06-04 21:48:36,523 A connection has been established
+2020-06-04 21:48:36,526 User zEMvphdba6 added a few items to cart
+2020-06-04 21:48:36,527 127.0.0.1 - - [04/Jun/2020 21:48:36] "[37mPOST /add_to_cart HTTP/1.1[0m" 200 -
+2020-06-04 21:48:37,928 New request to /collection
+2020-06-04 21:48:37,928 New 'read' databse interface request
+2020-06-04 21:48:37,928 Trying to establish connection
+2020-06-04 21:48:37,934 Connection closed
+2020-06-04 21:48:37,934 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:37,934 Database path: ./database/catalog.db
+2020-06-04 21:48:37,935 Trying to connect to database.
+2020-06-04 21:48:37,935 A connection to the database has been established
+2020-06-04 21:48:37,935 A connection has been established
+2020-06-04 21:48:37,936 New 'read' databse interface request
+2020-06-04 21:48:37,936 Trying to establish connection
+2020-06-04 21:48:37,936 Connection closed
+2020-06-04 21:48:37,936 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:37,936 Database path: ./database/catalog.db
+2020-06-04 21:48:37,936 Trying to connect to database.
+2020-06-04 21:48:37,937 A connection to the database has been established
+2020-06-04 21:48:37,937 A connection has been established
+2020-06-04 21:48:37,979 127.0.0.1 - - [04/Jun/2020 21:48:37] "[37mGET /collection HTTP/1.1[0m" 200 -
+2020-06-04 21:48:42,910 New request to /cart
+2020-06-04 21:48:42,912 New 'read' databse interface request
+2020-06-04 21:48:42,912 Trying to establish connection
+2020-06-04 21:48:42,912 Connection closed
+2020-06-04 21:48:42,913 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:42,913 Database path: ./database/catalog.db
+2020-06-04 21:48:42,915 Trying to connect to database.
+2020-06-04 21:48:42,916 A connection to the database has been established
+2020-06-04 21:48:42,916 A connection has been established
+2020-06-04 21:48:42,983 127.0.0.1 - - [04/Jun/2020 21:48:42] "[37mGET /cart HTTP/1.1[0m" 200 -
+2020-06-04 21:48:45,838 User zEMvphdba6 added a few items to cart
+2020-06-04 21:48:45,841 127.0.0.1 - - [04/Jun/2020 21:48:45] "[37mGET /update_item_amount/70/44/inc HTTP/1.1[0m" 200 -
+2020-06-04 21:48:45,987 User zEMvphdba6 added a few items to cart
+2020-06-04 21:48:45,990 127.0.0.1 - - [04/Jun/2020 21:48:45] "[37mGET /update_item_amount/70/44/inc HTTP/1.1[0m" 200 -
+2020-06-04 21:48:46,677 User zEMvphdba6 added a few items to cart
+2020-06-04 21:48:46,680 127.0.0.1 - - [04/Jun/2020 21:48:46] "[37mGET /update_item_amount/75/44/inc HTTP/1.1[0m" 200 -
+2020-06-04 21:48:47,213 User zEMvphdba6 added a few items to cart
+2020-06-04 21:48:47,215 127.0.0.1 - - [04/Jun/2020 21:48:47] "[37mGET /update_item_amount/71/44/inc HTTP/1.1[0m" 200 -
+2020-06-04 21:48:48,808 New 'read' databse interface request
+2020-06-04 21:48:48,810 Trying to establish connection
+2020-06-04 21:48:48,837 Connection closed
+2020-06-04 21:48:48,839 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:48,839 Database path: ./database/catalog.db
+2020-06-04 21:48:48,839 Trying to connect to database.
+2020-06-04 21:48:48,839 A connection to the database has been established
+2020-06-04 21:48:48,839 A connection has been established
+2020-06-04 21:48:48,845 User zEMvphdba6 deleted a few items from cart
+2020-06-04 21:48:48,846 127.0.0.1 - - [04/Jun/2020 21:48:48] "[32mPOST /remove_item_from_cart/71/44 HTTP/1.1[0m" 302 -
+2020-06-04 21:48:48,866 New request to /cart
+2020-06-04 21:48:48,867 New 'read' databse interface request
+2020-06-04 21:48:48,867 Trying to establish connection
+2020-06-04 21:48:48,867 Connection closed
+2020-06-04 21:48:48,868 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:48,868 Database path: ./database/catalog.db
+2020-06-04 21:48:48,868 Trying to connect to database.
+2020-06-04 21:48:48,868 A connection to the database has been established
+2020-06-04 21:48:48,868 A connection has been established
+2020-06-04 21:48:48,879 127.0.0.1 - - [04/Jun/2020 21:48:48] "[37mGET /cart HTTP/1.1[0m" 200 -
+2020-06-04 21:48:53,120 A new order was created for Artur Yumaev, art.yumaev@gmail.com
+2020-06-04 21:48:53,123 New 'create' databse interface request
+2020-06-04 21:48:53,123 Trying to establish connection
+2020-06-04 21:48:53,123 Connection closed
+2020-06-04 21:48:53,124 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:53,124 Database path: ./database/catalog.db
+2020-06-04 21:48:53,124 Trying to connect to database.
+2020-06-04 21:48:53,124 A connection to the database has been established
+2020-06-04 21:48:53,124 A connection has been established
+2020-06-04 21:48:53,194 New 'create' databse interface request
+2020-06-04 21:48:53,194 Trying to establish connection
+2020-06-04 21:48:53,195 Connection closed
+2020-06-04 21:48:53,195 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:53,195 Database path: ./database/catalog.db
+2020-06-04 21:48:53,195 Trying to connect to database.
+2020-06-04 21:48:53,195 A connection to the database has been established
+2020-06-04 21:48:53,195 A connection has been established
+2020-06-04 21:48:53,205 New 'update' databse interface request
+2020-06-04 21:48:53,206 Trying to establish connection
+2020-06-04 21:48:53,206 Connection closed
+2020-06-04 21:48:53,207 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:53,207 Database path: ./database/catalog.db
+2020-06-04 21:48:53,208 Trying to connect to database.
+2020-06-04 21:48:53,208 A connection to the database has been established
+2020-06-04 21:48:53,215 A connection has been established
+2020-06-04 21:48:53,298 New 'update' databse interface request
+2020-06-04 21:48:53,298 Trying to establish connection
+2020-06-04 21:48:53,299 Connection closed
+2020-06-04 21:48:53,299 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:53,299 Database path: ./database/catalog.db
+2020-06-04 21:48:53,299 Trying to connect to database.
+2020-06-04 21:48:53,299 A connection to the database has been established
+2020-06-04 21:48:53,299 A connection has been established
+2020-06-04 21:48:53,329 New order from Artur Yumaev, art.yumaev@gmail.com, zEMvphdba6
+2020-06-04 21:48:53,329 127.0.0.1 - - [04/Jun/2020 21:48:53] "[37mPOST /accept_order HTTP/1.1[0m" 200 -
+2020-06-04 21:48:55,718 New request to /collection
+2020-06-04 21:48:55,721 New 'read' databse interface request
+2020-06-04 21:48:55,721 Trying to establish connection
+2020-06-04 21:48:55,722 Connection closed
+2020-06-04 21:48:55,722 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:55,722 Database path: ./database/catalog.db
+2020-06-04 21:48:55,722 Trying to connect to database.
+2020-06-04 21:48:55,723 A connection to the database has been established
+2020-06-04 21:48:55,723 A connection has been established
+2020-06-04 21:48:55,752 New 'read' databse interface request
+2020-06-04 21:48:55,752 Trying to establish connection
+2020-06-04 21:48:55,753 Connection closed
+2020-06-04 21:48:55,753 Database API: <module 'sqlite3' from '/usr/lib/python3.6/sqlite3/__init__.py'>
+2020-06-04 21:48:55,753 Database path: ./database/catalog.db
+2020-06-04 21:48:55,753 Trying to connect to database.
+2020-06-04 21:48:55,754 A connection to the database has been established
+2020-06-04 21:48:55,754 A connection has been established
+2020-06-04 21:48:55,849 127.0.0.1 - - [04/Jun/2020 21:48:55] "[37mGET /collection HTTP/1.1[0m" 200 -
+2020-06-04 21:48:59,016 New request to /home
+2020-06-04 21:48:59,022 127.0.0.1 - - [04/Jun/2020 21:48:59] "[37mGET / HTTP/1.1[0m" 200 -
+2020-06-04 21:49:20,348  * Detected change in '/home/artur/Desktop/Databases-Course-Work/webApp/app.py', reloading
+2020-06-04 21:49:20,398  * Restarting with stat
+2020-06-04 21:49:20,764 Application was started
+2020-06-04 21:49:20,768 A new warehouse instance was created
+2020-06-04 21:49:20,785  * Debugger is active!
+2020-06-04 21:49:20,788  * Debugger PIN: 468-817-599

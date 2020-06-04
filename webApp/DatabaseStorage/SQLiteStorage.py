@@ -1,4 +1,5 @@
 import sys
+import logging
 sys.path.insert(0,'..')
 
 from DatabaseStorage.StorageInterface import StorageInterface
@@ -9,10 +10,15 @@ from DatabaseStorage.SQLiteQuery.generateSQLiteQueriesOrders import GenerateSQLi
 from Connection import Connection
 
 class SQLiteStorage(StorageInterface):
+    def __init__(self):
+        logging.basicConfig(filename='../applicationLog.log', format='%(asctime)s %(message)s', level=logging.DEBUG)
+
     def connect(self):
         self.connection = Connection().getInstance()
+        logging.debug('A connection has been established')
     
     def create(self, query):
+        logging.debug("New 'create' databse interface request")
         self.connect()
         c = self.connection.cursor()
         c.execute(query)
@@ -20,6 +26,7 @@ class SQLiteStorage(StorageInterface):
         self.connection.close()
 
     def read(self, query):
+        logging.debug("New 'read' databse interface request")
         self.connect()
         c = self.connection.cursor()
         data = [row for row in c.execute(query)]
@@ -29,11 +36,15 @@ class SQLiteStorage(StorageInterface):
         return data
     
     def update(self, query):
+        logging.debug("New 'update' databse interface request")
         self.connect()
         c = self.connection.cursor()
         c.execute(query)
         self.connection.commit()
         self.connection.close()
+
+    def delete(self, query):
+        pass
 
     def insertIntoCart(self, userid, vendor, size):
         insertQuery = GenerateSQLiteQueriesCart().generateInsertIntoCart(userid, vendor, size)
@@ -89,6 +100,3 @@ class SQLiteStorage(StorageInterface):
             vendor, size, orderedQuantity
         )
         self.update(updateQuery)
-
-    def delete(self):
-        pass

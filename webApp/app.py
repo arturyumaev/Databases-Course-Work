@@ -10,6 +10,11 @@ from BusinessRules.CartController  import CartController
 from BusinessRules.WarehouseController import WarehouseController
 from BusinessRules.OrdersManager import OrdersManager
 
+import logging
+
+logging.basicConfig(filename='./applicationLog.log', format='%(asctime)s %(message)s', level=logging.DEBUG)
+logging.info('Application was started')
+
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
@@ -22,12 +27,15 @@ ordersManager = OrdersManager()
 # Home
 @app.route('/')
 def home():
+    logging.debug('New request to /home')
     if not cookies.hasCookies(request):
         userSessionId = cookies.getUserSessionId()
         cartController.generateCart(userSessionId)
 
         resp = make_response(render_template('home.html', title='Home', items_amount=0))
         resp.set_cookie('userid', userSessionId)
+
+        logging.debug('New user with id %s', userSessionId)
     else:
         userSessionId = request.cookies.get('userid')
         cartItemsQuantity = cartController.getCart(userSessionId).itemsQuantity
@@ -46,6 +54,7 @@ def home():
 # Collection
 @app.route('/collection')
 def collection():
+    logging.debug('New request to /collection')
     url_args = list(request.args.keys())
     sort_by, gender, categories = 'Sort by', 'forall', 'None'
     if all(i in url_args for i in ['sort', 'gender', 'cats']):
@@ -88,6 +97,7 @@ def collection():
 # Cart
 @app.route('/cart')
 def cart():
+    logging.debug('New request to /cart')
     if not cookies.hasCookies(request):
         userSessionId = cookies.getUserSessionId()
         cartController.generateCart(userSessionId)
@@ -127,6 +137,8 @@ def add_to_cart():
 
     cartController.updateCart(userSessionId, cart)
 
+    logging.debug('User %s added a few items to cart',  userSessionId)
+
     return str(cartItemsQuantity)
 
 
@@ -138,6 +150,8 @@ def remove_item_from_cart(vendor, size):
     cart.removeItem(vendor, size, price)
     cartController.updateCart(userSessionId, cart)
 
+    logging.debug("User %s deleted a few items from cart", userSessionId)
+
     return redirect(url_for('cart'))
 
 
@@ -147,6 +161,8 @@ def update_item_amount(vendor, size, method):
     cart = cartController.getCart(userSessionId)
     remainingItemAmount, itemsQuantity, totalOrderPrice = cart.updateItemAmount(vendor, size, method)
     cartController.updateCart(userSessionId, cart)
+
+    logging.debug('User %s added a few items to cart',  userSessionId)
 
     return ",".join([str(remainingItemAmount), str(itemsQuantity), str(totalOrderPrice)])
 
@@ -171,12 +187,10 @@ def accept_order():
             'order_accepted.html',
             title='Order accepted',
             items_amount=cartItemsQuantity))
+
+    logging.debug('New order from %s, %s, %s', name, email, userSessionId)
     
     return resp
-
-@app.route('/test')
-def test():
-    return render_template('order_accepted.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
